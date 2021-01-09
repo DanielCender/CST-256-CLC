@@ -16,8 +16,12 @@
     </head>
 
     <body>
-    <form action="doRegister" method="POST">
-    @csrf    
+        <nav class="navbar navbar-dark navbar-expand-lg bg-secondary navigation-clean-button" style="font-size: 14px;">
+            <div class="container"><a class="navbar-brand" href="/index">MyNewJob</a><button data-toggle="collapse"
+                    class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                        class="navbar-toggler-icon"></span></button>
+            </div>
+        </nav>
         <div class="d-flex flex-column justify-content-center" id="login-box">
             <div class="login-box-header">
                 <h4 style="color:rgb(139,139,139);margin-bottom:0px;font-weight:400;font-size:27px;">Sign Up</h4>
@@ -44,32 +48,26 @@
                 <form>
                     <div class="col-12">
                         <div class="mb-3">
-                            <label class="form-label">First Name</label>
-                            <input type="text" class="form-control" name="firstName" placeholder="John">
-                        </div>
-                    </div>
-                    <div class="col-12">
-                        <div class="mb-3">
-                            <label class="form-label">Last Name</label>
-                            <input type="text" class="form-control" name="lastName" placeholder="Doe">
+                            <label class="form-label">Name</label>
+                            <input type="text" class="form-control" placeholder="John Doe">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="text" class="form-control" name="email" placeholder="example@example.com">
+                            <input type="text" class="form-control" placeholder="example@example.com">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="mb-3">
                             <label class="form-label">Password</label>
-                            <input type="text" class="form-control" name="password" placeholder="Password">
+                            <input type="text" class="form-control" placeholder="Password">
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="mb-3">
                             <label class="form-label">Confirm Password</label>
-                            <input type="text" class="form-control" name="password2" placeholder="Confirm Password">
+                            <input type="text" class="form-control" placeholder="Confirm Password">
                         </div>
                     </div>
                 </form>
@@ -78,14 +76,11 @@
                     class="btn btn-primary btn-block box-shadow" id="submit-id-submit" type="submit">Sign Up</button>
             </div>
             <div id="login-box-footer" style="padding:10px 20px;padding-bottom:23px;padding-top:18px;">
-                <p style="margin-bottom:0px;">Have an account?<a id="register-link" href="login">Login</a></p>
+                <p style="margin-bottom:0px;">Have an account?<a id="register-link" href="/login">Login</a></p>
             </div>
         </div>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-        </form>
-      
     </body>
 
 </html>
-

@@ -14,9 +14,14 @@
         <link rel="stylesheet" href="assets/css/Pretty-Registration-Form.css">
         <link rel="stylesheet" href="assets/css/styles.css">
     </head>
+
     <body>
-    <form action="doLogin" method="POST">
-    @csrf
+        <nav class="navbar navbar-dark navbar-expand-lg bg-secondary navigation-clean-button" style="font-size: 14px;">
+            <div class="container"><a class="navbar-brand" href="/index">MyNewJob</a><button data-toggle="collapse"
+                    class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                        class="navbar-toggler-icon"></span></button>
+            </div>
+        </nav>
         <div class="d-flex flex-column justify-content-center" id="login-box">
             <div class="login-box-header">
                 <h4 style="color:rgb(139,139,139);margin-bottom:0px;font-weight:400;font-size:27px;">Login</h4>
@@ -40,9 +45,9 @@
                 <div class="login-box-seperator"></div>
             </div>
             <div class="email-login" style="background-color:#ffffff;"><input type="email"
-                    class="email-imput form-control" style="margin-top:10px;" required="" name="email" placeholder="Email"
+                    class="email-imput form-control" style="margin-top:10px;" required="" placeholder="Email"
                     minlength="6"><input type="password" class="password-input form-control" style="margin-top:10px;"
-                    required="" name="password" placeholder="Password" minlength="6"></div>
+                    required="" placeholder="Password" minlength="6"></div>
             <div class="submit-row" style="margin-bottom:8px;padding-top:0px;"><button
                     class="btn btn-primary btn-block box-shadow" id="submit-id-submit" type="submit">Login</button>
                 <div class="d-flex justify-content-between">
@@ -53,14 +58,12 @@
                 </div>
             </div>
             <div id="login-box-footer" style="padding:10px 20px;padding-bottom:23px;padding-top:18px;">
-                <p style="margin-bottom:0px;">Don't you have an account?<a id="register-link" href="register">Sign
+                <p style="margin-bottom:0px;">Don't you have an account?<a id="register-link" href="/signup">Sign
                         Up!</a></p>
             </div>
         </div>
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-   </form>
-   
     </body>
 
 </html>

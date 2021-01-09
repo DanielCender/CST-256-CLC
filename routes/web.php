@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 // route for home view
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
 
 // route for login form action
@@ -23,12 +23,12 @@ Route::post('/doLogin', 'App\Http\Controllers\LoginController@attemptLogin');
 // route for register form action
 Route::post('/doRegister', 'App\Http\Controllers\RegisterController@attemptRegister');
 
-// route for login view
+Route::get('/index', function () {
+    return view('index');
+});
 Route::get('/login', function () {
     return view('login');
 });
-
-// route for register view
-Route::get('/register', function () {
-    return view('register');
+Route::get('/signup', function () {
+    return view('signup');
 });

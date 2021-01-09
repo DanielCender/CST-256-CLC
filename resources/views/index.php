@@ -17,17 +17,17 @@
 
     <body>
         <nav class="navbar navbar-dark navbar-expand-lg bg-secondary navigation-clean-button" style="font-size: 14px;">
-            <div class="container"><a class="navbar-brand" href="index.html">MyNewJob</a><button data-toggle="collapse"
+            <div class="container"><a class="navbar-brand" href="/index">MyNewJob</a><button data-toggle="collapse"
                     class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
                         class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navcol-1">
                     <ul class="nav navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link active" href="index.html">Find Jobs</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/index">Find Jobs</a></li>
                         <li class="nav-item"><a class="nav-link" href="#">Browse Companies</a></li>
-                    </ul><span class="ml-auto navbar-text actions"> <a class="login" href="#"></a><a class="login"
-                            href="#">Employers/ Post Jobs</a></span><span class="ml-auto navbar-text actions"
-                        style="text-align: center;"> <a class="login" href="register"><strong>Sign Up</strong></a><a
-                            class="login" href="login">Log In</a></span>
+                    </ul><span class="ml-auto navbar-text actions"> <a class="login" href="/Emplogin">Employers/ Post
+                            Jobs</a></span><span class="ml-auto navbar-text actions" style="text-align: center;"> <a
+                            class="login" href="/signup"><strong>Sign Up</strong></a><a class="login" href="/login">Log
+                            In</a></span>
                 </div>
             </div>
         </nav>
@@ -89,15 +89,7 @@
         <div></div>
         <div>
             <div class="container">
-                <div class="row">
-                    <div class="col-md-12" style="margin: 55px 5px;">
-                        <p></p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <footer></footer>
-                    </div>
+                <div class="row-md-12" style="margin: 2in 5px;">
                 </div>
             </div>
         </div>
@@ -123,7 +115,9 @@
                         </div>
                         <div class="col-md-6 item text">
                             <h3>Company Name</h3>
-                            <p></p>
+                            <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut
+                                vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit
+                                pulvinar dictum vel in justo.</p>
                         </div>
                         <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a
                                 href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i
@@ -137,4 +131,5 @@
         <script src="assets/js/jquery.min.js"></script>
         <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     </body>
+
 </html>
