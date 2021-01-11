@@ -1,33 +1,31 @@
 <?php
 
 /**
- * CLC 1
- * UserModel 1
+ * CLC 2
+ * UserUpdateModel 1
  * Authors: Dylan Dorn, Daniel Cender, Nathaniel Kumar, Ray Omoregie
- * 12-20-2020
- * Model class containing data neccessary for users
+ * 1-10-2020
+ * Model class containing data necessary to update user records
  *
  */
 namespace App\Models;
 
-class UserModel
+class UserUpdateModel
 {
 
     // variables
     private $id;
     private $email;
-    private $password;
     private $firstName;
     private $lastName;
     private $role;
     private $suspended;
 
     // constructor
-    function __construct($id, $email, $password, $firstName, $lastName, $role = 'USER', $suspended = False)
+    function __construct($id, $email, $firstName, $lastName, $role = 'USER', $suspended = False)
     {
         $this->id = $id;
         $this->email = $email;
-        $this->password = $password;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->role = $role;
@@ -43,16 +41,7 @@ class UserModel
     public function getEmail()
     {
         return $this->email;
-    }
-
-    /**
-     *
-     * @return mixed
-     */
-    public function getPassword()
-    {
-        return $this->password;
-    }
+		}
 
     /**
      *
@@ -61,15 +50,6 @@ class UserModel
     public function setEmail($email)
     {
         $this->email = $email;
-    }
-
-    /**
-     *
-     * @param mixed $password
-     */
-    public function setPassword($password)
-    {
-        $this->password = $password;
     }
 
     /**

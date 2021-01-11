@@ -32,3 +32,11 @@ Route::get('/login', function () {
 Route::get('/signup', function () {
     return view('signup');
 });
+
+// Admin Dashboard views and controller mappings
+Route::get('/admin', 'App\Http\Controllers\AdministrationController@index');
+//below route for edit the users detail and update.
+Route::get('/admin/user-edit/{id}', 'App\Http\Controllers\AdministrationController@edit');
+//update user button route
+Route::put('/admin/user-update/{id}','App\Http\Controllers\AdministrationController@update');
+Route::delete('/admin/user-delete/{id}', 'App\Http\Controllers\AdministrationController@delete');
