@@ -5,7 +5,7 @@
  * UserDAO 1
  * Authors: Dylan Dorn, Daniel Cender, Nathaniel Kumar, Ray Omoregie
  * 1-10-2021
- * File that contains the functions required for validating user data
+ * File that contains the functions required for managing user data
  *
  */
 namespace App\Services\Data;
@@ -15,11 +15,11 @@ use App\Models\UserUpdateModel;
 
 class UserDAO
 {
-	public function listUsers() {
-		  $response = DB::table('users')
-						->get();
-			return $response;
-	}
+    // retrieves all users from db
+  public function retrieveUsers()
+    {
+        return DB::table('users')->get();
+    }
 	//check if user with same email exists
   public function userExists($id)
     {
@@ -49,9 +49,36 @@ class UserDAO
 							'ROLE' => $user->getRole(),
 							'SUSPENDED' => $user->getSuspended()]);
 		return $affected > 0;
-	}
+  }
 	public function delete($id) {
-		$affected = DB::table('users')->where('ID', $id)->delete();
-		return $affected > 0;
+		return DB::table('users')->where('ID', $id)->delete();
 	}
+
+    /**
+     * @deprecated Just so any UI updates in works from other devs don't break while we clean up data structure.
+     */
+    // updates user
+    public function updateUser($user)
+    {
+        $result = DB::table('users')->where('ID', $user->getID())
+        ->update([
+            'EMAIL' => $user->getEmail(),
+            'PASSWORD' => $user->getPassword(),
+            'FIRSTNAME' => $user->getFirstName(),
+            'LASTNAME' => $user->getLastName(),
+            'RIGHTS' => $user->getRights(),
+            'ROLE' => $user->getRole()
+        ]);
+
+        return $result;
+    }
+    /**
+     * @deprecated Just so any UI updates in works from other devs don't break while we clean up data structure.
+     */
+    // returns user from db based on id
+    public function findUser($id)
+    {
+        $response = DB::table('users')->where('ID', $id)->first();
+        return $response;
+    }
 }

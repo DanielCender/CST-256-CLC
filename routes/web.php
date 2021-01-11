@@ -23,12 +23,15 @@ Route::post('/doLogin', 'App\Http\Controllers\LoginController@attemptLogin');
 // route for register form action
 Route::post('/doRegister', 'App\Http\Controllers\RegisterController@attemptRegister');
 
+// route for home view
 Route::get('/index', function () {
     return view('index');
 });
+// route for Login view
 Route::get('/login', function () {
     return view('login');
 });
+// route for register view
 Route::get('/signup', function () {
     return view('signup');
 });
@@ -39,4 +42,9 @@ Route::get('/admin', 'App\Http\Controllers\AdministrationController@index');
 Route::get('/admin/user-edit/{id}', 'App\Http\Controllers\AdministrationController@edit');
 //update user button route
 Route::put('/admin/user-update/{id}','App\Http\Controllers\AdministrationController@update');
+//delete user button route
 Route::delete('/admin/user-delete/{id}', 'App\Http\Controllers\AdministrationController@delete');
+// route for profile view
+Route::get('/profile', function () {
+    return view('profile');
+});

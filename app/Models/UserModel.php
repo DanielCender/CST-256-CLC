@@ -1,10 +1,10 @@
 <?php
 
 /**
- * CLC 1
- * UserModel 1
+ * CLC 2
+ * UserModel 2
  * Authors: Dylan Dorn, Daniel Cender, Nathaniel Kumar, Ray Omoregie
- * 12-20-2020
+ * 1-10-2021
  * Model class containing data neccessary for users
  *
  */
@@ -28,6 +28,7 @@ class UserModel
         $this->id = $id;
         $this->email = $email;
         $this->password = $password;
+        $this->rights = $rights;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->role = $role;

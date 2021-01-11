@@ -20,7 +20,7 @@ class AdministrationService
 {
     public function listUsers() {
         $service = new UserDAO();
-        $users = $service->listUsers();
+        $users = $service->retrieveUsers();
         return $users;
     }
     public function getEditableUser($id) {
