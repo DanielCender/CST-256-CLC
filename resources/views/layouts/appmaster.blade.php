@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-	<link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}">
+	<link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
   <link rel="stylesheet" href="/assets/fonts/ionicons.min.css">
   <link rel="stylesheet" href="/assets/css/Footer-Dark.css">
@@ -18,7 +18,7 @@
 <div align="center">@yield('content')</div>
 </body>
 
-	<script>@yield('scripts')</script>
+	@yield('scripts')
   <script src="/assets/js/jquery.min.js"></script>
   <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
 </html>

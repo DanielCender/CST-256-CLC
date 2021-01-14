@@ -31,9 +31,22 @@ Route::get('/index', function () {
 Route::get('/login', function () {
     return view('login');
 });
+Route::get('/loginPassed', function () {
+    return view('loginPassed');
+});
+Route::get('/loginFailed', function () {
+    return view('loginFailed');
+});
+
 // route for register view
 Route::get('/signup', function () {
     return view('signup');
+});
+Route::get('/registerPassed', function () {
+    return view('registerPassed');
+});
+Route::get('/registerFailed', function () {
+    return view('registerFailed');
 });
 
 // Admin Dashboard views and controller mappings
