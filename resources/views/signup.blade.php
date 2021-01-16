@@ -9,55 +9,44 @@
             <div class="login-box-header">
                 <h4 style="color:rgb(139,139,139);margin-bottom:0px;font-weight:400;font-size:27px;">Sign Up</h4>
             </div>
-            <div class="login-box-content">
-                <div class="fb-login box-shadow"><a class="d-flex flex-row align-items-center social-login-link"
-                        href="#"><i class="fa fa-facebook"
-                            style="margin-left:0px;padding-right:20px;padding-left:22px;width:56px;"></i>Sign Up with
-                        Facebook</a></div>
-                <div class="gp-login box-shadow"><a class="d-flex flex-row align-items-center social-login-link"
-                        style="margin-bottom:10px;" href="#"><i class="fa fa-google"
-                            style="color:rgb(255,255,255);width:56px;"></i>Sign Up with Google+</a></div>
-            </div>
-            <div class="d-flex flex-row align-items-center login-box-seperator-container">
-                <div class="login-box-seperator"></div>
-                <div class="login-box-seperator-text">
-                    <p
-                        style="margin-bottom:0px;padding-left:10px;padding-right:10px;font-weight:400;color:rgb(201,201,201);">
-                        or</p>
-                </div>
-                <div class="login-box-seperator"></div>
-            </div>
+                <form action="/doRegister" method="post">
+                {{ csrf_field() }}
             <div class="email-login" style="background-color:#ffffff;">
-                <form>
                     <div class="col-12">
                         <div class="mb-3">
-                            <label class="form-label">Name</label>
-                            <input type="text" class="form-control" placeholder="John Doe">
+                            <label class="form-label">First Name</label>
+                            <input type="text" name="firstName" class="form-control" placeholder="John" required>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="mb-3">
+                            <label class="form-label">Last Name</label>
+                            <input type="text" name="lastName" class="form-control" placeholder="Doe" required>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="mb-3">
                             <label class="form-label">Email</label>
-                            <input type="text" class="form-control" placeholder="example@example.com">
+                            <input type="text" name="email" class="form-control" placeholder="example@example.com" required>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="mb-3">
                             <label class="form-label">Password</label>
-                            <input type="text" class="form-control" placeholder="Password">
+                            <input type="password" name="password" class="form-control" placeholder="Password" required>
                         </div>
                     </div>
                     <div class="col-12">
                         <div class="mb-3">
                             <label class="form-label">Confirm Password</label>
-                            <input type="text" class="form-control" placeholder="Confirm Password">
+                            <input type="password" name="passwordConfirm" class="form-control" placeholder="Confirm Password">
                         </div>
                     </div>
-                </form>
             </div>
-            <div class="submit-row" style="margin-bottom:8px;padding-top:0px;"><button
-                    class="btn btn-primary btn-block box-shadow" id="submit-id-submit" type="submit">Sign Up</button>
+            <div class="submit-row" style="margin-bottom:8px;padding-top:0px;">
+            <button class="btn btn-primary btn-block box-shadow" id="submit-id-submit" type="submit">Sign Up</button>
             </div>
+            </form>
             <div id="login-box-footer" style="padding:10px 20px;padding-bottom:23px;padding-top:18px;">
                 <p style="margin-bottom:0px;">Have an account?<a id="register-link" href="/login">Login</a></p>
             </div>
