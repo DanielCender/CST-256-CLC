@@ -17,7 +17,7 @@ class JobPostingDAO implements Stateful
 {
   public function list($filter = []) {
 			// TODO: use filters
-			// type: SALARY || HOURLY || CONTRACT || INTERNSHIP
+			// type: SALARY || HOURLY || CONTRACT || INTERNSHIP - not enum either
 			// authorId: ...
 			// creatorId: ...
 			/** $filter is array<array> of col|condition|val
