@@ -61,3 +61,6 @@ Route::delete('/admin/user-delete/{id}', 'App\Http\Controllers\AdministrationCon
 Route::get('/profile', function () {
     return view('profile');
 });
+
+// See a users skills and experiences
+Route::get('/users/{id}', 'App\Http\Controllers\UserProfileController@index');

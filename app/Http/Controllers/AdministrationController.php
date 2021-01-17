@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\Data\UserDAO;
 use App\Models\UserUpdateModel;
-use App\Services\Data\SecurityDAO;
 use App\Services\Business\AdministrationService;
 
 class AdministrationController extends Controller

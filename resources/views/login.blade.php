@@ -28,7 +28,7 @@
                     class="email-input form-control" style="margin-top:10px;" name="email" type="email"  required placeholder="Email"
                     minlength="6">
                     <input type="password" class="password-input form-control" name="password" style="margin-top:10px;"
-                    required placeholder="Password" minlength="6">
+                    required placeholder="Password" minlength="4">
                     </div>
             <div class="submit-row" style="margin-bottom:8px;padding-top:0px;"><button
                     class="btn btn-primary btn-block box-shadow" id="submit-id-submit" type="submit">Login</button>
