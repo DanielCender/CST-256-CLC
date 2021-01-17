@@ -9,6 +9,7 @@
  * Verifies whether a user is allowed to login
  *
  */
+
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -42,15 +43,14 @@ class LoginController extends Controller
         //check if login passed
         if ($response->getSuccess()) {
             //return if passed
-            return view('loginPassed', array(
+            return view('profile', array(
                 'email' => $loginRequest->getEmail()
 
             ));
         } else {
             //return if failed
-            return view('loginFailed', array(
-                'msg' => $response->getMsg()
-            ));
+            //TODO -- still working on fail page
+            return view('login?fail');
         }
     }
 }

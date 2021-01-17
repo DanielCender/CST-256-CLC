@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,22 +32,14 @@ Route::get('/index', function () {
 Route::get('/login', function () {
     return view('login');
 });
-Route::get('/loginPassed', function () {
-    return view('loginPassed');
-});
-Route::get('/loginFailed', function () {
-    return view('loginFailed');
-});
 
 // route for register view
 Route::get('/signup', function () {
     return view('signup');
 });
-Route::get('/registerPassed', function () {
-    return view('registerPassed');
-});
-Route::get('/registerFailed', function () {
-    return view('registerFailed');
+// route for register view
+Route::get('/signup?fail', function () {
+    return view('signup');
 });
 
 // Admin Dashboard views and controller mappings
@@ -54,7 +47,7 @@ Route::get('/admin', 'App\Http\Controllers\AdministrationController@index');
 //below route for edit the users detail and update.
 Route::get('/admin/user-edit/{id}', 'App\Http\Controllers\AdministrationController@edit');
 //update user button route
-Route::put('/admin/user-update/{id}','App\Http\Controllers\AdministrationController@update');
+Route::put('/admin/user-update/{id}', 'App\Http\Controllers\AdministrationController@update');
 //delete user button route
 Route::delete('/admin/user-delete/{id}', 'App\Http\Controllers\AdministrationController@delete');
 // route for profile view
@@ -71,6 +64,6 @@ Route::get('/users/{id}/edit', 'App\Http\Controllers\UserProfileController@loadE
 Route::get('/users/{id}/{cvItemId}/edit', 'App\Http\Controllers\UserProfileController@loadCVEdit');
 
 //update user  button route
-Route::put('/users/{id}/{cvItemId}/update','App\Http\Controllers\UserProfileController@update');
+Route::put('/users/{id}/{cvItemId}/update', 'App\Http\Controllers\UserProfileController@update');
 //delete user button route
 Route::delete('/users/{id}/{cvItemId}/delete', 'App\Http\Controllers\UserProfileController@delete');

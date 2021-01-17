@@ -21,12 +21,14 @@ class RegisterController extends Controller
 {
 
     //returns view of register
-    function index(Request $request) {
+    function index(Request $request)
+    {
         return View("register");
     }
 
     //called on when user submits register form
-    function attemptRegister(Request $request) {
+    function attemptRegister(Request $request)
+    {
         $this->validateForm($request);
 
         //variables
@@ -47,27 +49,30 @@ class RegisterController extends Controller
         //check if registration passed
         if ($response->getSuccess()) {
             //return if passed
-            return view('registerPassed', array(
+            return view('userEdit', array(
                 'email' => $registerRequest->getEmail()
             ));
         } else {
             //return if failed
-            return view('registerFailed', array(
-                'msg' => $response->getMsg()
-            ));
+            //TODO -- still working on fail page
+            return view('signup?fail');
         }
     }
 
-	private function validateForm(Request $request)
+    private function validateForm(Request $request)
     {
-    // Setup Data Validation Rules for Login Form
-    // Lol, can't require Alpha now, cause of Elon Musk and Grimes'
-    $rules = ['firstName' => 'Required | Max:100',
-            'lastName' => 'Required | Max:100',
-             'email' => 'Required | Email',
-            'password' => 'Required | Between:4,10',
-            'passwordConfirm' => 'Required | Between:4,10'];
-     // Run Data Validation Rules
-     $this->validate($request, $rules);
+        // Setup Data Validation Rules for Login Form
+        // Lol, can't require Alpha now, cause of Elon Musk and Grimes'
+
+        $rules = [
+            'firstName' => 'Required | Max:30',
+            'lastName' => 'Required | Max:30',
+            'email' => 'Required | Email',
+            'password' => 'Required | Between:8,16',
+            'passwordConfirm' => 'Required | same:password'
+
+        ];
+        // Run Data Validation Rules
+        $this->validate($request, $rules);
     }
 }
