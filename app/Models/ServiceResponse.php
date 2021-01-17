@@ -2,13 +2,13 @@
 namespace App\Models;
 
 /**
- * CLC 1
- * RegisterResponse 1
+ * CLC 3
+ * ServiceResponse 1
  * Authors: Dylan Dorn, Daniel Cender, Nathaniel Kumar, Ray Omoregie
- * 12-20-2020
- * Model class containing data for register response
+ * 1-16-2021
+ * Model class containing data for responses from calls to methods on Service objects
  */
-class RegisterResponse
+class ServiceResponse
 {
 
     // variables
@@ -22,7 +22,7 @@ class RegisterResponse
     }
 
     // getters and setters
-    
+
     /**
      *
      * @return mixed

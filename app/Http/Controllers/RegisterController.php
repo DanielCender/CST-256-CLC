@@ -36,10 +36,8 @@ class RegisterController extends Controller
         $lastName = $request->input('lastName');
         // dd($email, $password, $passwordConfirm, $firstName, $lastName); // will output to web as "debugger"
 
-        // TODO: Continue working out Registration fixes from here.
         //initialize register request model
         $registerRequest = new RegisterRequest($email, $password, $passwordConfirm, $firstName, $lastName);
-
         //initialize security business service
         $securityService = new SecurityService();
 
@@ -48,19 +46,16 @@ class RegisterController extends Controller
 
         //check if registration passed
         if ($response->getSuccess()) {
-
             //return if passed
             return view('registerPassed', array(
                 'email' => $registerRequest->getEmail()
             ));
         } else {
-
             //return if failed
             return view('registerFailed', array(
                 'msg' => $response->getMsg()
             ));
         }
-
     }
 
 	private function validateForm(Request $request)

@@ -10,8 +10,7 @@
  */
 namespace App\Services\Business;
 
-use App\Models\LoginResponse;
-use App\Models\RegisterResponse;
+use App\Models\ServiceResponse;
 use App\Models\UserUpdateModel;
 use App\Services\Data\SecurityDAO;
 use App\Services\Data\UserDAO;

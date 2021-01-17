@@ -21,11 +21,7 @@ class SecurityDAO
         $response = DB::table('users')->where('EMAIL', $loginRequest->getEmail())
             ->where('password', $loginRequest->getPassword())
             ->count();
-        if ($response > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return $response > 0;
     }
 
     //check if user with same email exists
@@ -33,12 +29,7 @@ class SecurityDAO
     {
         $response = DB::table('users')->where('EMAIL', $registerRequest->getEmail())
             ->count();
-        
-        if ($response > 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return $response > 0;
     }
 
     //insert new user in database
@@ -50,7 +41,7 @@ class SecurityDAO
             'FIRSTNAME' => $registerRequest->getFirstName(),
             'LASTNAME' => $registerRequest->getLastName()
         ]);
-        
+
         return $result;
     }
 }

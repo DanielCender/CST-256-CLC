@@ -14,22 +14,22 @@ class RegisterRequest
     // variables
     private $email;
     private $password;
-    private $password2;
+    private $passwordConfirm;
     private $firstName;
     private $lastName;
 
     // constructor
-    function __construct($email, $password, $password2, $firstName, $lastName)
+    function __construct($email, $password, $passwordConfirm, $firstName, $lastName)
     {
         $this->email = $email;
         $this->password = $password;
-        $this->password2 = $password2;
+        $this->passwordConfirm = $passwordConfirm;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
     }
 
     // getters and setters
-    
+
     /**
      *
      * @return mixed
@@ -52,18 +52,18 @@ class RegisterRequest
      *
      * @return mixed
      */
-    public function getPassword2()
+    public function getPasswordConfirm()
     {
-        return $this->password2;
+        return $this->passwordConfirm;
     }
 
     /**
      *
-     * @param mixed $password2
+     * @param mixed $passwordConfirm
      */
-    public function setPassword2($password2)
+    public function setPasswordConfirm($passwordConfirm)
     {
-        $this->password2 = $password2;
+        $this->passwordConfirm = $passwordConfirm;
     }
 
     /**

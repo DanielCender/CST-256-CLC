@@ -22,40 +22,35 @@ class LoginController extends Controller
     //returns view of login
     function index(Request $request)
     {
-        return View("login");
+        return view("login");
     }
 
     //called on when user submits login form
     function attemptLogin(Request $request)
     {
-        
         //variables
         $email = $request->input('email');
         $password = $request->input('password');
-        
+
         //initialize login request
         $loginRequest = new LoginRequest($email, $password);
-        
         //initialize security business service
         $securityService = new SecurityService();
-        
         //login response
         $response = $securityService->login($loginRequest);
-        
+
         //check if login passed
         if ($response->getSuccess()) {
-            
             //return if passed
-            return View('loginPassed', array(
+            return view('loginPassed', array(
                 'email' => $loginRequest->getEmail()
-            
+
             ));
         } else {
-            
             //return if failed
-            return View('loginFailed', array(
+            return view('loginFailed', array(
                 'msg' => $response->getMsg()
             ));
-        }            
-    }       
+        }
+    }
 }
