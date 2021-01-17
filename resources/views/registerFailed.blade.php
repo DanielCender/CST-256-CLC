@@ -7,6 +7,9 @@
 @section('content')
 		<h2>Registration Failed</h2>
 		</br>
+		<?php
+    echo $msg . "</br>";
+		?>
 		<a href = "signup">Return to Registration Form</a>
 	<div id="login-box-footer" style="padding:10px 20px;padding-bottom:23px;padding-top:18px;">
     </div>

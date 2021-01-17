@@ -13,14 +13,17 @@ namespace App\Services\Business;
 use App\Models\LoginResponse;
 use App\Models\ServiceResponse;
 use App\Services\Data\SecurityDAO;
+use App\Services\Data\DAO;
 
 class SecurityService
 {
-
+    private $dao;
+    function __construct() {
+        $this->dao = new DAO('users');
+    }
     //validates login form request
     public function login($loginRequest)
     {
-
         //filters passed in variables
         $e = $this->filter($loginRequest->getEmail());
         $p = $this->filter($loginRequest->getPassword());
@@ -28,9 +31,6 @@ class SecurityService
         //creates login response
         $response = new ServiceResponse();
         $response->setSuccess(false);
-
-        //security data service instance
-        $securityDAO = new SecurityDAO();
 
         //validation checks
         if (empty($e)) {
@@ -46,20 +46,21 @@ class SecurityService
             $loginRequest->setPassword($p);
 
             // check if email and password combo exists
-            if ($securityDAO->verifyUser($loginRequest)) {
+            if (count($this->dao->list([
+                ['EMAIL', '=', $loginRequest->getEmail()],
+                ['PASSWORD', '=', $loginRequest->getPassword()]
+                ])) === 1) {
                 $response->setSuccess(true);
             } else {
                 $response->setMsg("Invalid email or password.");
             }
         }
-
         return $response;
     }
 
     //register form request
     public function register($registerRequest)
     {
-
         //filters passed in variables
         $e = $this->filter($registerRequest->getEmail());
         $p = $this->filter($registerRequest->getPassword());
@@ -70,10 +71,6 @@ class SecurityService
         //create register response
         $response = new ServiceResponse();
         $response->setSuccess(false);
-
-        //create security data service
-        $securityDAO = new SecurityDAO();
-
         //validation checks
         if (empty($e)) {
             $response->setMsg("Email cannot be left blank.");
@@ -86,15 +83,18 @@ class SecurityService
         } else if (! $this->isEmail($e)) {
             $response->setMsg("Email not valid.");
         } else {
-            $registerRequest->setEmail($e);
-            $registerRequest->setPassword($p);
-            $registerRequest->setFirstName($f);
-            $registerRequest->setLastName($l);
-
+            $exists = $this->dao->list([
+                ['EMAIL', '=', $e]
+            ]);
             //check if email already exists in database
-            if (! $securityDAO->userExists($registerRequest)) {
+            if ($exists->count() === 0) {
                 //check if user was created successfully
-                if ($securityDAO->createUser($registerRequest) > 0) {
+                if ($this->dao->create([
+                    'EMAIL' => $e,
+                    'PASSWORD' => $p,
+                    'FIRSTNAME' => $f,
+                    'LASTNAME' => $l
+                ]) !== null) {
                     $response->setSuccess(true);
                 } else {
                     $response->setMsg("Error inserting user into database.");

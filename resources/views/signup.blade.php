@@ -9,6 +9,17 @@
             <div class="login-box-header">
                 <h4 style="color:rgb(139,139,139);margin-bottom:0px;font-weight:400;font-size:27px;">Sign Up</h4>
             </div>
+            <!-- Display all the Data Validation Rule Errors -->
+<?php
+    if($errors->count() != 0)
+    {
+        echo "<h5>List of Errors</h5>";
+        foreach($errors->all() as $message)
+        {
+            echo $message . "<br/>";
+        }
+    }
+?>
                 <form action="/doRegister" method="post">
                 {{ csrf_field() }}
             <div class="email-login" style="background-color:#ffffff;">

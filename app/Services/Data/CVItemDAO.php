@@ -17,7 +17,6 @@ class CVItemDAO implements Stateful
 {
   public function list($filter = [])
     {
-			// TODO: use filters
 			// type: JOB || SKILL || LEARNING_EXPERIENCE
 			// userId: ...
 			/** $filter is array<array> of col|condition|val

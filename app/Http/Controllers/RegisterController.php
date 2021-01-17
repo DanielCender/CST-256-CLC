@@ -28,13 +28,13 @@ class RegisterController extends Controller
     //called on when user submits register form
     function attemptRegister(Request $request) {
         $this->validateForm($request);
+
         //variables
         $email = $request->input('email');
         $password = $request->input('password');
         $passwordConfirm = $request->input('passwordConfirm');
         $firstName = $request->input('firstName');
         $lastName = $request->input('lastName');
-        // dd($email, $password, $passwordConfirm, $firstName, $lastName); // will output to web as "debugger"
 
         //initialize register request model
         $registerRequest = new RegisterRequest($email, $password, $passwordConfirm, $firstName, $lastName);
@@ -61,10 +61,11 @@ class RegisterController extends Controller
 	private function validateForm(Request $request)
     {
     // Setup Data Validation Rules for Login Form
-    $rules = ['firstName' => 'Required | Between:4,10 | Alpha', // Lol, can't require Alpha now, cause of Elon Musk and Grimes'
-            'lastName' => 'Required | Between:4,10 | Alpha',
-             'email' => 'Required | Between:4,100',
-              'password' => 'Required | Between:4,10',
+    // Lol, can't require Alpha now, cause of Elon Musk and Grimes'
+    $rules = ['firstName' => 'Required | Max:100',
+            'lastName' => 'Required | Max:100',
+             'email' => 'Required | Email',
+            'password' => 'Required | Between:4,10',
             'passwordConfirm' => 'Required | Between:4,10'];
      // Run Data Validation Rules
      $this->validate($request, $rules);

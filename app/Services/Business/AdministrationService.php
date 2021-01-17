@@ -1,10 +1,10 @@
 <?php
 
 /**
- * CLC 2
+ * CLC 3
  * AdministrationService 1
  * Authors: Dylan Dorn, Daniel Cender, Nathaniel Kumar, Ray Omoregie
- * 1-10-2020
+ * 1-16-2020
  * File that contains the functions required for admin logic checks
  *
  */
@@ -12,32 +12,27 @@ namespace App\Services\Business;
 
 use App\Models\ServiceResponse;
 use App\Models\UserUpdateModel;
-use App\Services\Data\SecurityDAO;
-use App\Services\Data\UserDAO;
+use App\Services\Data\DAO;
 
 class AdministrationService
 {
+    private $dao;
+    function __construct() {
+        $this->dao = new DAO('users');
+    }
     public function listUsers() {
-        $service = new UserDAO();
-        $users = $service->retrieveUsers();
+        $users = $this->dao->list();
         return $users;
     }
     public function getEditableUser($id) {
-        $securityService = new SecurityDAO();
-        $service = new UserDAO();
-
-        // find if user exists
-        $exists = $service->userExists($id);
-        if($exists == false) {
+        $user = $this->dao->get($id);
+        if($user == false) {
             return NULL;
         }
-        $user = $service->findById($id);
         return $user;
     }
     public function updateUser(UserUpdateModel $user) {
-        $securityService = new SecurityDAO();
-        $service = new UserDAO();
-        $existing = $service->findById($user->getId());
+        $existing = $this->dao->get($user->getId());
         $e = $this->filter($user->getEmail());
         $f = $this->filter($user->getFirstName());
         $l = $this->filter($user->getLastName());
@@ -46,14 +41,19 @@ class AdministrationService
 
         // Check if any fields have changed
         if(!($existing->EMAIL == $e) or !($existing->FIRSTNAME == $f) or !($existing->LASTNAME == $l) or !($existing->ROLE == $r) or !((bool) $existing->SUSPENDED == $s)) {
-            $result = $service->update($user);
+            $result = $this->dao->update($user->getId(), [
+            'EMAIL' => $user->getEmail(),
+            'FIRSTNAME' => $user->getFirstName(),
+            'LASTNAME' => $user->getLastName(),
+            'ROLE' => $user->getRole(),
+            'SUSPENDED' => $user->getSuspended()
+        ]);
             return $result;
         }
         return true;
     }
     public function deleteUser($id) {
-        $service = new UserDAO();
-        $result = $service->delete($id);
+        $result = $this->dao->delete($id);
         return $result;
     }
     //filters strings

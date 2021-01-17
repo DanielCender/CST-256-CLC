@@ -2,10 +2,10 @@
 
 /**
  * CLC 3
- * JobPostingDAO 1
+ * DAO 1
  * Authors: Dylan Dorn, Daniel Cender, Nathaniel Kumar, Ray Omoregie
  * 1-14-2021
- * File that contains the functions required for managing job posting item data
+ * File that contains the functions required for managing user cv item data
  *
  */
 namespace App\Services\Data;
@@ -13,22 +13,27 @@ namespace App\Services\Data;
 use Illuminate\Support\Facades\DB;
 use App\Interfaces\Stateful;
 
-class JobPostingDAO implements Stateful
+class DAO implements Stateful
 {
-  public function list($filter = []) {
-			// type: SALARY || HOURLY || CONTRACT || INTERNSHIP - not enum either
-			// authorId: ...
-			// creatorId: ...
+	private $tableName;
+	function __construct($tableName = '') {
+		$this->tableName = $tableName;
+	}
+
+  public function list($filter = [])
+    {
+			// type: JOB || SKILL || LEARNING_EXPERIENCE
+			// userId: ...
 			/** $filter is array<array> of col|condition|val
 			 * [
     	 *	['status', '=', '1'],
     	 *  ['subscribed', '<>', '1'],
 			 * ]
 			 */
-    return DB::table('job_postings')->where($filter)->get();
-  }
+      return DB::table($this->tableName)->where($filter)->get();
+    }
 	public function get($id) {
-		$response = DB::table('job_postings')->where('ID', $id)->first();
+		$response = DB::table($this->tableName)->where('ID', $id)->first();
 		if(isset($response)) {
 			return $response;
 		} else {
@@ -36,16 +41,16 @@ class JobPostingDAO implements Stateful
 		}
 	}
 	public function create($input) {
-		$id = DB::table('job_postings')->insertGetId($input);
+		$id = DB::table($this->tableName)->insertGetId($input);
 		return $this->get($id);
 	}
 	public function update($id, $input) {
-		$affected = DB::table('job_postings')
+		$affected = DB::table($this->tableName)
               ->where('ID', $id)
 							->update($input);
 		return $this->get($id);
   }
 	public function delete($id) {
-		return DB::table('job_postings')->where('ID', $id)->delete();
+		return DB::table($this->tableName)->where('ID', $id)->delete();
 	}
 }
