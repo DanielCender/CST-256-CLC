@@ -64,3 +64,13 @@ Route::get('/profile', function () {
 
 // See a users skills and experiences
 Route::get('/users/{id}', 'App\Http\Controllers\UserProfileController@index');
+
+Route::get('/users/{id}/edit', 'App\Http\Controllers\UserProfileController@loadEdit');
+
+// Routes for user profile forms and update route controllers
+Route::get('/users/{id}/{cvItemId}/edit', 'App\Http\Controllers\UserProfileController@loadCVEdit');
+
+//update user  button route
+Route::put('/users/{id}/{cvItemId}/update','App\Http\Controllers\UserProfileController@update');
+//delete user button route
+Route::delete('/users/{id}/{cvItemId}/delete', 'App\Http\Controllers\UserProfileController@delete');

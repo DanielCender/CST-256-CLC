@@ -1,7 +1,7 @@
 @extends('layouts.appmaster')
 
 @section('title')
-			{{ $user->FIRSTNAME . " " . $user->LASTNAME }} | User Profile
+			{{ $user->FIRSTNAME . " " . $user->LASTNAME }} | User Profile Editor
 @endsection()
 
 @section('content')
@@ -53,6 +53,8 @@
                       <th>ID</th>
                       <th>Name</th>
                       <th>Description</th>
+											<th>Edit</th>
+                      <th>Delete</th>
                     </thead>
                     <tbody>
                       <!--fetch table data -->
@@ -61,6 +63,16 @@
                         <td>{{ $row->ID }}</td>
                         <td>{{ $row->NAME }}</td>
                         <td>{{ $row->DESCRIPTION }}</td>
+												<td>
+                          <a href="/users/{{ $user->ID }}/{{ $row->ID }}/edit" class="btn btn-success">EDIT</a>
+                        </td>
+                        <td>
+                          <form action="/users/{{ $user->ID }}/{{ $row->ID }}/delete" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-danger">DELETE</button>
+                          </form>
+                        </td>
                        </tr>
                        @endforeach()
                     </tbody>
@@ -93,6 +105,8 @@
                       <th>Business</th>
 											<th>Start Date</th>
 											<th>End Date</th>
+											<th>Edit</th>
+                      <th>Delete</th>
                     </thead>
                     <tbody>
                       <!--fetch table data -->
@@ -104,6 +118,16 @@
                         <td>{{ $row->INSTITUTION }}</td>
 												<td>{{ $row->START_DATE }}</td>
 												<td>{{ $row->END_DATE }}</td>
+													<td>
+                          <a href="/users/{{ $user->ID }}/{{ $row->ID }}/edit" class="btn btn-success">EDIT</a>
+                        </td>
+                        <td>
+                          <form action="/users/{{ $user->ID }}/{{ $row->ID }}/delete" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-danger">DELETE</button>
+                          </form>
+                        </td>
                        </tr>
                        @endforeach()
                     </tbody>
@@ -136,6 +160,8 @@
 											<th>Institution</th>
 											<th>Start Date</th>
 											<th>End Date</th>
+											<th>Edit</th>
+                      <th>Delete</th>
                     </thead>
                     <tbody>
                       <!--fetch table data -->
@@ -147,6 +173,16 @@
                         <td>{{ $row->INSTITUTION }}</td>
 												<td>{{ $row->START_DATE }}</td>
 												<td>{{ $row->END_DATE }}</td>
+													<td>
+                          <a href="/users/{{ $user->ID }}/{{ $row->ID }}/edit" class="btn btn-success">EDIT</a>
+                        </td>
+                        <td>
+                          <form action="/users/{{ $user->ID }}/{{ $row->ID }}/delete" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-danger">DELETE</button>
+                          </form>
+                        </td>
                        </tr>
                        @endforeach()
                     </tbody>
