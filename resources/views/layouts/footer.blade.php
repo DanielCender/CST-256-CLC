@@ -20,7 +20,7 @@
                 </ul>
             </div>
             <div class="col-md-6 item text mb-2">
-                <h3>Company Name</h3>
+                <h3>MyNewJob</h3>
                 <p>At MyNewJob, we strive to get you a job within 24 hours. We have great customer service that can help
                     you get started, so you can start applying today! <br><br><sup>*</sup><i><small> We strive to give
                             you the fastest service as posssible, but does not consider company responce time or how
