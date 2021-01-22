@@ -43,7 +43,7 @@
 									<h3>Edit User {{ $user->EMAIL }}</h3>
 								</div>
 				<div class="card-body">
-				 <form action="/users/{{ $user->ID }}/addCVItem" method="post">
+				 <form action="/users/{{ $user->ID }}/add" method="post">
         	{{ csrf_field() }}
 						<div class="col-12">
                 <div class="mb-3">
@@ -60,19 +60,19 @@
             <div class="col-12">
                 <div class="mb-3">
                     <label class="form-label">Institution</label>
-                    <input type="text" name="institution" class="form-control" placeholder="Some company/college" required>
+                    <input type="text" name="institution" class="form-control" placeholder="Some company/college">
                 </div>
             </div>
             <div class="col-12">
                 <div class="mb-3">
                     <label class="form-label">Started</label>
-                    <input type="date" name="startDate" class="form-control" required>
+                    <input type="date" name="startDate" class="form-control">
                 </div>
             </div>
             <div class="col-12">
                 <div class="mb-3">
                     <label class="form-label">Ended</label>
-                    <input type="date" name="endDate" class="form-control" required>
+                    <input type="date" name="endDate" class="form-control">
                 </div>
             </div>
             <div class="col-12">

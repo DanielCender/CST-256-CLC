@@ -60,19 +60,29 @@
             <div class="col-12">
                 <div class="mb-3">
                     <label class="form-label">Institution</label>
-                    <input type="text" name="institution" class="form-control" value="{{ $item->INSTITUTION }}" required>
+                    <input type="text" name="institution" class="form-control" value="{{ $item->INSTITUTION }}">
                 </div>
             </div>
             <div class="col-12">
                 <div class="mb-3">
                     <label class="form-label">Started</label>
-                    <input type="date" name="startDate" value="{{ $item->START_DATE }}" class="form-control" required>
+                    <input type="date" name="startDate" value="{{ $item->START_DATE }}" class="form-control">
                 </div>
             </div>
             <div class="col-12">
                 <div class="mb-3">
                     <label class="form-label">Ended</label>
-                    <input type="date" name="endDate" value="{{ $item->END_DATE }}" class="form-control" required>
+                    <input type="date" name="endDate" value="{{ $item->END_DATE }}" class="form-control">
+                </div>
+            </div>
+						<div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Type</label>
+                    <select type="select" name="type" value="{{ $item->TYPE }}" class="form-control" required>
+											<option value="SKILL">SKILL</option>
+											<option value="JOB">JOB</option>
+											<option value="LEARNING_EXPERIENCE">LEARNING_EXPERIENCE</option>
+										</select>
                 </div>
             </div>
             <button type="submit" class="btn btn-danger">UPDATE</button>

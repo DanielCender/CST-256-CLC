@@ -64,8 +64,8 @@ Route::get('/users/{id}/edit', 'App\Http\Controllers\UserProfileController@loadE
 Route::get('/users/{id}/{cvItemId}/edit', 'App\Http\Controllers\UserProfileController@loadCVEdit');
 
 // Add user CV Item button route
-Route::put('/users/{id}/add', 'App\Http\Controllers\UserProfileController@addCVItem');
+Route::post('/users/{id}/add', 'App\Http\Controllers\UserProfileController@addCVItem');
 // Update user CV Item button route
-Route::put('/users/{id}/{cvItemId}/update', 'App\Http\Controllers\UserProfileController@updateCVItem');
+Route::post('/users/{id}/{cvItemId}/update', 'App\Http\Controllers\UserProfileController@updateCVItem');
 // Delete user CV Item button route
 Route::delete('/users/{id}/{cvItemId}/delete', 'App\Http\Controllers\UserProfileController@deleteCVItem');

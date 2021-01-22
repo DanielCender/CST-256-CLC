@@ -31,8 +31,8 @@ class UserProfileController extends Controller
         ];
         return view('cv-item-edit', $data);
     }
-    public function addCVItem(Request $request) {
-        $userDAO = new DAO('cv_items');
+    public function addCVItem(Request $request, $id) {
+        $cvDAO = new DAO('cv_items');
         //variables
         $name = $request->input('name');
         $description = $request->input('description');
@@ -41,15 +41,52 @@ class UserProfileController extends Controller
         $endDate = $request->input('endDate');
         $type = $request->input('type');
 
-        dd($name, $description, $institution, $startDate, $endDate, $type);
+        $res = $cvDAO->create([
+            'NAME' => $name,
+            'DESCRIPTION' => $description,
+            'INSTITUTION' => $institution,
+            'START_DATE' => $startDate,
+            'END_DATE' => $endDate,
+            'TYPE' => $type,
+            'USER_ID' => $id
+        ]);
+        if($res) {
+            $data = $this->loadData($id);
+             return view('cv-edit', $data);
+        } else {
+             $this->loadAdd($id);
+        }
     }
-    public function updateCVItem(Request $request) {
-        $userDAO = new DAO('cv_items');
+    public function updateCVItem(Request $request, $id, $cvItemId) {
+        $cvDAO = new DAO('cv_items');
 
+        $name = $request->input('name');
+        $description = $request->input('description');
+        $institution = $request->input('institution');
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
+        $type = $request->input('type');
+
+        $res = $cvDAO->update($cvItemId, [
+            'NAME' => $name,
+            'DESCRIPTION' => $description,
+            'INSTITUTION' => $institution,
+            'START_DATE' => $startDate,
+            'END_DATE' => $endDate,
+            'TYPE' => $type
+        ]);
+
+        if($res) {
+            return $this->loadEdit($id);
+        }
     }
-    public function deleteCVItem(Request $request) {
-        $userDAO = new DAO('cv_items');
-
+    public function deleteCVItem($id, $cvItemId) {
+        $cvDAO = new DAO('cv_items');
+        $res = $cvDAO->delete($cvItemId);
+        if($res) {
+            $data = $this->loadData($id);
+             return redirect('cv-edit', $data);
+        }
     }
     public function loadData($id) {
         $userDAO = new DAO('users');

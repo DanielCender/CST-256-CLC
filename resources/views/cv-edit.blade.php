@@ -44,7 +44,7 @@
             <div class="card">
               <div class="card-header">
                 <h4 class="card-title">Professional Skills</h4>
-                <a href="/users/{{ $user->ID }}/addCVItem" class="btn btn-success">ADD</a>
+                <a href="/users/{{ $user->ID }}/add" class="btn btn-success">ADD</a>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
