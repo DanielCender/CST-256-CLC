@@ -1,11 +1,10 @@
 @extends('layouts.layout')
 
 @section('title')
-			Admin Dashboard
+			{{ $user->FIRSTNAME . " " . $user->LASTNAME }} | User Profile
 @endsection()
 
 @section('content')
-
         <nav class="navbar navbar-dark navbar-expand-lg bg-secondary navigation-clean-button" style="font-size: 14px;">
             <div class="container"><a class="navbar-brand" href="/index">MyNewJob</a><button data-toggle="collapse"
                     class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
@@ -25,24 +24,27 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 align-self-center" style="margin: 100px 0px 0px 0px;">
-                        <h2 class="text-center" style="margin: 0px 0px 30px;">Modify Users</h2>
+                        <h2 class="text-center" style="margin: 0px 0px 30px;">
+													{{ $user->FIRSTNAME . ' ' . $user->LASTNAME }}
+												</h2>
+                        <h4 class="text-center" style="margin: 0px 0px 30px;">
+												<a href="mailto:{{ $user->EMAIL }}">Contact</a>
+												</h4>
                     </div>
                 </div>
             </div>
         </div>
 
+<!--
+	Skills Section
+-->
         <div class="container">
         <div class="row">
-          <div class="col-md-12">
+          <div class="col-md-12 mb-4">
             <div class="card">
               <div class="card-header">
-                <h4 class="card-title"> Registered User's</h4>
-                  <!-- for show the message updadated copy from home.blade.phpfile-->
-                 @if (session('status'))
-                              <div class="alert alert-success" role="alert">
-                                  {{ session('status') }}
-                              </div>
-                  @endif
+                <h4 class="card-title">Professional Skills</h4>
+
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -51,33 +53,101 @@
                       <!-- fetch table data -->
                       <th>ID</th>
                       <th>Name</th>
-                      <th>Email</th>
-                      <th>Role</th>
-                      <th>Suspended</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
+                      <th>Description</th>
                     </thead>
                     <tbody>
                       <!--fetch table data -->
-                      @foreach($users as $row)
+                      @foreach($skills as $row)
                       <tr>
                         <td>{{ $row->ID }}</td>
-                        <td>{{ $row->FIRSTNAME . ' ' . $row->LASTNAME }}</td>
-                        <td>{{ $row->EMAIL }}</td>
-                        <td>{{ $row->ROLE }}</td>
-                        <td>{{ $row->SUSPENDED == 1 ? 'Yes' : 'No' }}</td>
-                        <td>
-                          <a href="/admin/user-edit/{{ $row->ID }}" class="btn btn-success">EDIT</a>
-                        </td>
-                        <td>
-                          <!-- we have to add form method because without form method it will show error-->
-                          <form action="/admin/user-delete/{{ $row->ID }}" method="post">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <button type="submit" class="btn btn-danger">DELETE</button>
-<!-- <a href="/role-delete/" class="btn btn-danger">DELETE</a> it is not working or we are not submitting it-->
-                          </form>
-                        </td>
+                        <td>{{ $row->NAME }}</td>
+                        <td>{{ $row->DESCRIPTION }}</td>
+                       </tr>
+                       @endforeach()
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+<!--
+	Jobs Section
+-->
+        <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-4">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Professional Experience</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <!-- fetch table data -->
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Description</th>
+                      <th>Business</th>
+											<th>Start Date</th>
+											<th>End Date</th>
+                    </thead>
+                    <tbody>
+                      <!--fetch table data -->
+                      @foreach($jobs as $row)
+                      <tr>
+                        <td>{{ $row->ID }}</td>
+                        <td>{{ $row->NAME }}</td>
+                        <td>{{ $row->DESCRIPTION }}</td>
+                        <td>{{ $row->INSTITUTION }}</td>
+												<td>{{ $row->START_DATE }}</td>
+												<td>{{ $row->END_DATE }}</td>
+                       </tr>
+                       @endforeach()
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+
+<!--
+	Educational Experience Section
+-->
+        <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h4 class="card-title">Applicable Experience</h4>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <!-- fetch table data -->
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Description</th>
+											<th>Institution</th>
+											<th>Start Date</th>
+											<th>End Date</th>
+                    </thead>
+                    <tbody>
+                      <!--fetch table data -->
+                      @foreach($education as $row)
+                      <tr>
+                        <td>{{ $row->ID }}</td>
+                        <td>{{ $row->NAME }}</td>
+                        <td>{{ $row->DESCRIPTION }}</td>
+                        <td>{{ $row->INSTITUTION }}</td>
+												<td>{{ $row->START_DATE }}</td>
+												<td>{{ $row->END_DATE }}</td>
                        </tr>
                        @endforeach()
                     </tbody>

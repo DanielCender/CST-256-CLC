@@ -1,11 +1,10 @@
 @extends('layouts.layout')
 
 @section('title')
-			Admin Dashboard
+			{{ $user->FIRSTNAME . " " . $user->LASTNAME }} | User Profile Editor
 @endsection()
 
 @section('content')
-
         <nav class="navbar navbar-dark navbar-expand-lg bg-secondary navigation-clean-button" style="font-size: 14px;">
             <div class="container"><a class="navbar-brand" href="/index">MyNewJob</a><button data-toggle="collapse"
                     class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
@@ -25,69 +24,63 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 align-self-center" style="margin: 100px 0px 0px 0px;">
-                        <h2 class="text-center" style="margin: 0px 0px 30px;">Modify Users</h2>
+                        <h2 class="text-center" style="margin: 0px 0px 30px;">
+													{{ $user->FIRSTNAME . ' ' . $user->LASTNAME }}
+												</h2>
+                        <h4 class="text-center" style="margin: 0px 0px 30px;">
+												<a href="mailto:{{ $user->EMAIL }}">Contact</a>
+												</h4>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h4 class="card-title"> Registered User's</h4>
-                  <!-- for show the message updadated copy from home.blade.phpfile-->
-                 @if (session('status'))
-                              <div class="alert alert-success" role="alert">
-                                  {{ session('status') }}
-                              </div>
-                  @endif
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class=" text-primary">
-                      <!-- fetch table data -->
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Email</th>
-                      <th>Role</th>
-                      <th>Suspended</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
-                    </thead>
-                    <tbody>
-                      <!--fetch table data -->
-                      @foreach($users as $row)
-                      <tr>
-                        <td>{{ $row->ID }}</td>
-                        <td>{{ $row->FIRSTNAME . ' ' . $row->LASTNAME }}</td>
-                        <td>{{ $row->EMAIL }}</td>
-                        <td>{{ $row->ROLE }}</td>
-                        <td>{{ $row->SUSPENDED == 1 ? 'Yes' : 'No' }}</td>
-                        <td>
-                          <a href="/admin/user-edit/{{ $row->ID }}" class="btn btn-success">EDIT</a>
-                        </td>
-                        <td>
-                          <!-- we have to add form method because without form method it will show error-->
-                          <form action="/admin/user-delete/{{ $row->ID }}" method="post">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <button type="submit" class="btn btn-danger">DELETE</button>
-<!-- <a href="/role-delete/" class="btn btn-danger">DELETE</a> it is not working or we are not submitting it-->
-                          </form>
-                        </td>
-                       </tr>
-                       @endforeach()
-                    </tbody>
-                  </table>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12"><!-- 12 row -->
+							<div class="card">
+								<div class="card-header">
+									<h3>Edit User {{ $user->EMAIL }}</h3>
+								</div>
+				<div class="card-body">
+				 <form action="/users/{{ $user->ID }}/{{ $item->ID }}/update" method="post">
+        	{{ csrf_field() }}
+						<div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control" value="{{ $item->NAME }}" required>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-        </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <input type="text" name="description" class="form-control" value="{{ $item->DESCRIPTION }}" required>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Institution</label>
+                    <input type="text" name="institution" class="form-control" value="{{ $item->INSTITUTION }}" required>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Started</label>
+                    <input type="date" name="startDate" value="{{ $item->START_DATE }}" class="form-control" required>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Ended</label>
+                    <input type="date" name="endDate" value="{{ $item->END_DATE }}" class="form-control" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-danger">UPDATE</button>
+        	</form>
+					</div>
+					</div>
+						</div>
+							</div>
 
 
         <div>

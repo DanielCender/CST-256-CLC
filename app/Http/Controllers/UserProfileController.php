@@ -11,6 +11,11 @@ class UserProfileController extends Controller
         $data = $this->loadData($id);
         return view('cv', $data);
     }
+    public function loadAdd($id) {
+        $userDAO = new DAO('users');
+        $user = $userDAO->get($id);
+        return view('cv-item-add', ['user' => $user]);
+    }
     public function loadEdit($id) {
         $data = $this->loadData($id);
         return view('cv-edit', $data);
@@ -27,12 +32,23 @@ class UserProfileController extends Controller
         return view('cv-item-edit', $data);
     }
     public function addCVItem(Request $request) {
+        $userDAO = new DAO('cv_items');
+        //variables
+        $name = $request->input('name');
+        $description = $request->input('description');
+        $institution = $request->input('institution');
+        $startDate = $request->input('startDate');
+        $endDate = $request->input('endDate');
+        $type = $request->input('type');
 
+        dd($name, $description, $institution, $startDate, $endDate, $type);
     }
     public function updateCVItem(Request $request) {
+        $userDAO = new DAO('cv_items');
 
     }
     public function deleteCVItem(Request $request) {
+        $userDAO = new DAO('cv_items');
 
     }
     public function loadData($id) {

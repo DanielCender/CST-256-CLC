@@ -26,7 +26,7 @@ class LoginController extends Controller
         return view("login");
     }
 
-    //called on when user submits login form
+        //called on when user submits login form
     function attemptLogin(Request $request)
     {
         //variables
@@ -49,8 +49,35 @@ class LoginController extends Controller
             ));
         } else {
             //return if failed
-            //TODO -- still working on fail page
-            return view('login?fail');
+            return view('login', array(
+                'msg' => $response->getMsg()
+            ));
         }
     }
+    // //called on when user submits login form
+    // function attemptLogin(Request $request)
+    // {
+    //     //variables
+    //     $email = $request->input('email');
+    //     $password = $request->input('password');
+
+    //     //initialize login request
+    //     $loginRequest = new LoginRequest($email, $password);
+    //     //initialize security business service
+    //     $securityService = new SecurityService();
+    //     //login response
+    //     $response = $securityService->login($loginRequest);
+
+    //     //check if login passed
+    //     if ($response->getSuccess()) {
+    //         //return if passed
+    //         return view('profile', array(
+    //             'email' => $loginRequest->getEmail()
+    //         ));
+    //     } else {
+    //         //return if failed
+    //         //TODO -- still working on fail page
+    //         return view('login?fail');
+    //     }
+    // }
 }
