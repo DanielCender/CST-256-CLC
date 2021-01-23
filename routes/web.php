@@ -73,3 +73,7 @@ Route::delete('/users/{id}/{cvItemId}/delete', 'App\Http\Controllers\UserProfile
 
 // Affinity Groups
 Route::get('/groups', 'App\Http\Controllers\AffinityGroupsController@index');
+Route::get('/groups/edit', 'App\Http\Controllers\AffinityGroupsController@loadEdit');
+Route::get('/groups/edit/{id}/edit', 'App\Http\Controllers\AffinityGroupsController@loadGroupEditor');
+Route::post('/groups/edit/{id}/update', 'App\Http\Controllers\AffinityGroupsController@updateGroup');
+Route::delete('/groups/edit/{id}/delete', 'App\Http\Controllers\AffinityGroupsController@deleteGroup');
