@@ -113,6 +113,20 @@ CREATE TABLE `users`
 (`EMAIL`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
+INSERT INTO `users` (
+  `
+EMAIL`,
+`FIRST_NAME
+`,
+  `LAST_NAME`,
+  `PASSWORD`,
+  `ROLE`
+) VALUES
+('test@gmail.com', 'test', 'test', 'test', 'USER'),
+('test2@gmail.com', 'test', 'test', 'test', 'USER'),
+('test3@gmail.com', 'test', 'test', 'test', 'USER'),
+
+
 INSERT INTO `cv_items` (`
 ID`,
 `NAME
@@ -149,6 +163,62 @@ ID`,
 ('13', '123@test.com', '1234', 'fds', 'fds', 'USER', '0'),
 ('14', 'dcender@my.gcu.edu', '1234', 'fds', 'fds', 'USER', '0');
 
+
+CREATE TABLE `CST-256-CLC`.`affinity_groups`
+(
+	ID int NOT NULL AUTO_INCREMENT,
+	NAME varchar
+(100) NOT NULL,
+	DESCRIPTION varchar
+(200),
+	TYPE varchar
+(25) NOT NULL,
+	PRIMARY KEY
+(ID)
+);
+
+INSERT INTO `
+CST-256-CLC
+`.`affinity_groups`
+(
+	NAME,
+	DESCRIPTION,
+	TYPE
+	)
+	VALUES
+('Developers', 'A place for developers to connect', 'INTEREST'),
+('Plumbers', 'A place for plumbers to connect', 'CAREER'),
+('Stock Brokers', 'A place for stock brokers to connect', 'CAREER')
+
+
+CREATE TABLE `CST-256-CLC`.`affinity_group_users`
+(
+	USER_ID int NOT NULL,
+	GROUP_ID int NOT NULL,
+	FOREIGN KEY
+(USER_ID)
+		REFERENCES users
+(ID)
+		ON
+DELETE CASCADE,
+	FOREIGN KEY (GROUP_ID)
+REFERENCES affinity_groups
+(ID)
+		ON
+DELETE CASCADE
+);
+
+INSERT INTO `
+CST-256-CLC
+`.`affinity_group_users`
+(
+	USER_ID,
+	GROUP_ID
+	)
+	VALUES
+(1, 1),
+(2, 1),
+(3, 3)
 
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

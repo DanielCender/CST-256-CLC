@@ -69,3 +69,7 @@ Route::post('/users/{id}/add', 'App\Http\Controllers\UserProfileController@addCV
 Route::post('/users/{id}/{cvItemId}/update', 'App\Http\Controllers\UserProfileController@updateCVItem');
 // Delete user CV Item button route
 Route::delete('/users/{id}/{cvItemId}/delete', 'App\Http\Controllers\UserProfileController@deleteCVItem');
+
+
+// Affinity Groups
+Route::get('/groups', 'App\Http\Controllers\AffinityGroupsController@index');

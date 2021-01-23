@@ -25,6 +25,7 @@ session_start();
                     <ul class="nav navbar-nav">
                         <li class="nav-item"><a class="nav-link active" href="/index">Find Jobs</a></li>
                         <li class="nav-item"><a class="nav-link active" href="/browse">Browse Companies</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="/groups">Browse Groups</a></li>
                     </ul>
                     <a class="navbar-brand" href="/index"><img src="/logo.png" style="width:auto; height:110px;"></a>
                     <span class="navbar-text actions" style="text-align: center;"><a class="login" href="/login">Sign
