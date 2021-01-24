@@ -36,6 +36,7 @@ Search For Profiles
 <div>
     <div class="container-fluid">
         <div class="row">
+            @foreach($users as $each)
             <div class="col-lg-3 col-md-3 col-sm-3">
                 <div class="card border-dark text-center" style="width: 3in;">
                     <div class="card-body">
@@ -43,50 +44,13 @@ Search For Profiles
                             style="height:180px; width:180px;"></a>
                         <h4 class="card-title">
                             <!-- links to user's page-->
-                            <a style="color:black; font-weight: bolder;" href="/user">Person's Full Name</a>
+                            <a style="color:black; font-weight: bolder;" href="/user/{{$each->ID}}">{{ $each->FIRSTNAME . " " . $each->LASTNAME }}</a>
                         </h4>
-                        <small>Position | Current Job | City, State</small>
+                        <!-- <small>Position | Current Job | City, State</small> -->
+                        <small><a href="mailto:{{ $each->EMAIL }}">Contact</a></small>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-3">
-                <div class="card border-dark text-center" style="width: 3in;">
-                    <div class="card-body">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                            style="height:180px; width:180px;"></a>
-                        <h4 class="card-title">
-                            <!-- links to user's page-->
-                            <a style="color:black; font-weight: bolder;" href="/user">Person's Full Name</a>
-                        </h4>
-                        <small>Position | Current Job | City, State</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3">
-                <div class="card border-dark text-center" style="width: 3in;">
-                    <div class="card-body">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                            style="height:180px; width:180px;"></a>
-                        <h4 class="card-title">
-                            <!-- links to user's page-->
-                            <a style="color:black; font-weight: bolder;" href="/user">Person's Full Name</a>
-                        </h4>
-                        <small>Position | Current Job | City, State</small>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-3">
-                <div class="card border-dark text-center" style="width: 3in;">
-                    <div class="card-body">
-                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-                            style="height:180px; width:180px;"></a>
-                        <h4 class="card-title">
-                            <!-- links to user's page-->
-                            <a style="color:black; font-weight: bolder;" href="/user">Person's Full Name</a>
-                        </h4>
-                        <small>Position | Current Job | City, State</small>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
         @endsection()

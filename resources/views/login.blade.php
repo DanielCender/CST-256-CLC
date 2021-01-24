@@ -11,10 +11,6 @@ My New Job | Login
     <div class="login-box-header">
         <h4 style="color:rgb(139,139,139);font-weight:400;font-size:27px;">Login</h4>
     </div>
-    <div class="email-login" style="background-color:#ffffff;">
-        <input type="email" class="form-control" style="margin-top:10px;" required placeholder="Email">
-        <input type="password" class="form-control" style="margin-top:10px;" required placeholder="Password">
-    </div>
     <?php
 //display errors
 if (isset($msg)) {

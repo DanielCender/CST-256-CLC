@@ -11,6 +11,11 @@ class UserProfileController extends Controller
         $data = $this->loadData($id);
         return view('cv', $data);
     }
+    public function loadAllProfiles() {
+        $userDAO = new DAO('users');
+        $users = $userDAO->list();
+        return view('profiles', ['users' => $users]);
+    }
     public function loadAdd($id) {
         $userDAO = new DAO('users');
         $user = $userDAO->get($id);
@@ -19,6 +24,12 @@ class UserProfileController extends Controller
     public function loadEdit($id) {
         $data = $this->loadData($id);
         return view('cv-edit', $data);
+    }
+    // New profile page makes use of the PHP session cookie.
+    public function loadNewEdit(Request $request) {
+        $id = $request->session()->get('userId', null);
+        $data = $this->loadData($id);
+        return view('selfInfo', $data);
     }
     public function loadCVEdit($id, $cvItemId) {
         $userDAO = new DAO('users');
@@ -85,7 +96,8 @@ class UserProfileController extends Controller
         $res = $cvDAO->delete($cvItemId);
         if($res) {
             $data = $this->loadData($id);
-             return redirect('cv-edit', $data);
+            return redirect()->route('loadUserEdit', ['id' => $id]);
+            //  return redirect()->action([UserProfileController::class, 'loadEdit', []]);
         }
     }
     public function loadData($id) {

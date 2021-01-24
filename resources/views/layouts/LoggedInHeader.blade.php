@@ -17,7 +17,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #031D44;">
             <div class="container-fluid">
                 <!--LOGO-->
-                <a class="navbar-brand" href="/home"><img src="logo.png" style="width:auto; height:65px;"></a>
+                <a class="navbar-brand" href="/home"><img src="/logo.png" style="width:auto; height:65px;"></a>
                 <!--Hamburger Button-->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

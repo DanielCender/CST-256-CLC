@@ -1,22 +1,14 @@
-<!DOCTYPE html>
-<html>
+@extends('layouts.mainLayout')
 
-<head>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta charset="utf-8">
-    <title>Admin Dashboard</title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="">
-</head>
+@section('title')
+			Edit User
+@endsection()
 
-<body>
-
+@section('content')
     <nav class="navbar navbar-dark navbar-expand" style="background-color: #031D44;">
         <div class="container">
             <div class=" collapse navbar-collapse justify-content-center" id="navbarText">
-                <a class="navbar-brand" href="/index"><img src="logo.png" style="width:auto; height:110px;"><br>Welcome Admin!</a>
+                <a class="navbar-brand text-center" href="/index"><img src="/logo.png" style="width:auto; height:110px;"><br>Welcome Admin!</a>
             </div>
         </div>
     </nav>
@@ -125,6 +117,9 @@
             </div>
         </footer>
     </div>
-</body>
+@endsection()
 
-</html>
+@section('scripts')
+
+
+@endsection()

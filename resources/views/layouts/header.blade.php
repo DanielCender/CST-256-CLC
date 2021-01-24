@@ -19,7 +19,7 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-center" id="navbarText">
-                    <a class="navbar-brand" href="/index"><img src="logo.png" style="width:auto; height:110px;"></a>
+                    <a class="navbar-brand" href="/index"><img src="/logo.png" style="width:auto; height:110px;"></a>
                     <ul class="nav navbar-nav">
                         <li class="nav-item" style="text-align: center;"><a class="nav-link" href="/login">Sign
                                 Up/ Log In</a></li>
