@@ -9,12 +9,12 @@ My New Job | Login
 <br><br>
 <div class="d-flex flex-column justify-content-center" id="login-box">
     <div class="login-box-header">
-        <h4 style="color:rgb(139,139,139);margin-bottom:0px;font-weight:400;font-size:27px;">Login</h4>
+        <h4 style="color:rgb(139,139,139);font-weight:400;font-size:27px;">Login</h4>
     </div>
-    <div class="email-login" style="background-color:#ffffff;"><input type="email" class="email-imput form-control"
-            style="margin-top:10px;" required="" placeholder="Email" minlength="6"><input type="password"
-            class="password-input form-control" style="margin-top:10px;" required="" placeholder="Password"
-            minlength="6"></div>
+    <div class="email-login" style="background-color:#ffffff;">
+        <input type="email" class="form-control" style="margin-top:10px;" required placeholder="Email">
+        <input type="password" class="form-control" style="margin-top:10px;" required placeholder="Password">
+    </div>
     <div class="submit-row" style="margin-bottom:8px;padding-top:0px;"><button class="btn btn-block"
             id="submit-id-submit" type="submit" style="background-color:#F58A07;">Login</button>
         <div class="d-flex justify-content-between">

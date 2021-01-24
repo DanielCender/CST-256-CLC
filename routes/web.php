@@ -37,9 +37,24 @@ Route::get('/login', function () {
 Route::get('/signup', function () {
     return view('signup');
 });
-// route for register view
-Route::get('/signup?fail', function () {
-    return view('signup');
+
+// route for loggedin user home view
+Route::get('/home', function () {
+    return view('home');
+});
+// route for search for jobs view
+Route::get('/jobs', function () {
+    return view('jobs');
+});
+// route for search for jobs view
+Route::get('/profilelist', function () {
+    return view('profiles');
+});
+Route::get('/user', function () {
+    return view('thisUser');
+});
+Route::get('/myprofile', function () {
+    return view('selfInfo');
 });
 
 // Admin Dashboard views and controller mappings

@@ -20,7 +20,7 @@ if ($errors->count() != 0) {
 ?>
 <div class="d-flex flex-column justify-content-center" id="login-box">
     <div class="login-box-header">
-        <h4 style="color:rgb(139,139,139);margin-bottom:0px;font-weight:400;font-size:27px;">Sign Up</h4>
+        <h4 style="color:rgb(139,139,139);font-weight:400;font-size:27px;">Sign Up</h4>
     </div>
     <form action="/doRegister" method="post">
         {{ csrf_field() }}
@@ -52,8 +52,7 @@ if ($errors->count() != 0) {
             <div class="col-12">
                 <div class="mb-3">
                     <label class="form-label">Confirm Password</label>
-                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Confirm Password"
-                        required>
+                    <input type="password" name="passwordConfirm" class="form-control" placeholder="Confirm Password">
                 </div>
             </div>
         </div>
