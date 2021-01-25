@@ -54,8 +54,7 @@
                       <th>Description</th>
                       <th>Type</th>
                       <th>User Count</th>
-                      <!-- <th>Edit</th>
-                      <th>Delete</th> -->
+                      <!-- <th>Join/Leave</th> -->
                     </thead>
                     <tbody>
                       <!--fetch table data -->
@@ -65,7 +64,21 @@
                         <td>{{ $row->NAME }}</td>
                         <td>{{ $row->DESCRIPTION }}</td>
                         <td>{{ $row->TYPE }}</td>
-												<td>N/A</td>
+					    <td>N/A</td>
+                       {{--   <td>
+                         @if($row->JOINED)
+                          <form action="/groups/{{ $row->ID }}/{{ $user->ID }}/delete" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-danger">Leave</button>
+                          </form>
+                        @else
+                            <form action="/groups/{{ $row->ID }}/{{ $user->ID }}/add" method="post">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-primary">Join</button>
+                          </form>
+                        @endif
+                        </td> --}}
                        </tr>
                        @endforeach()
                     </tbody>

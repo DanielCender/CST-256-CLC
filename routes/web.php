@@ -88,3 +88,7 @@ Route::get('/groups/edit', 'App\Http\Controllers\AffinityGroupsController@loadEd
 Route::get('/groups/edit/{id}/edit', 'App\Http\Controllers\AffinityGroupsController@loadGroupEditor');
 Route::post('/groups/edit/{id}/update', 'App\Http\Controllers\AffinityGroupsController@updateGroup');
 Route::delete('/groups/edit/{id}/delete', 'App\Http\Controllers\AffinityGroupsController@deleteGroup');
+
+// Affinity Groups Users
+Route::post('/groups/{groupId}/{userId}/add', 'App\Http\Controllers\AffinityGroupsController@addUserToGroup');
+Route::delete('/groups/{groupId}/{userId}/delete', 'App\Http\Controllers\AffinityGroupsController@removeUserFromGroup');
