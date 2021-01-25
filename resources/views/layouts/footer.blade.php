@@ -1,13 +1,15 @@
 <!--give some spacing before the footer-->
-<div class="container-fluid" style="margin: 2in;"></div>
+<div class="container-fluid" style="margin: 1in;"></div>
 <footer class="text-white mt-auto" style="background-color:#084887;">
     <div class="container">
         <div class="row text-center">
             <div class="col-sm-6 col-md-3 item">
                 <h3>Services</h3>
                 <ul style="padding: 0; list-style-type: none;">
-                    <li><a class="text-white" href="#">Create a Resume</a></li>
-                    <li><a class="text-white" href="#">Career Quiz</a></li>
+                    <li><a class="text-white" href="#">Find A Job</a></li>
+                    <li><a class="text-white" href="#">Connect With Others</a></li>
+                    <li><a class="text-white" href="#">Search a Company</a></li>
+                    <li><a class="text-white" href="#">Work With Us</a></li>
                 </ul>
             </div>
             <div class="col-sm-6 col-md-3 item">
@@ -29,13 +31,14 @@
             <div class="col item social">
                 <a href="#" style="color:white; font-size: 40px; margin:0 9px;"><i class="bi bi-facebook"></i></a>
                 <a href="#" style="color:white; font-size: 40px; margin:0 9px;"><i class="bi bi-instagram"></i></i></a>
-                <a href="#" style="color:white; font-size: 40px; margin:0 9px;"><i class="bi bi-github"></i></i></a>
                 <a href="#" style="color:white; font-size: 40px; margin:0 9px;"><i class="bi bi-google"></i></i></a>
             </div>
         </div>
         <p class="text-center copyright mt-3"><small><small>MyNewJob © 2021</small></small></p>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
+    </script>
 </footer>
-</body>
+<!-- </body>
 
-</html>
+</html> -->

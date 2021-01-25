@@ -37,10 +37,25 @@ Route::get('/login', function () {
 Route::get('/signup', function () {
     return view('signup');
 });
-// route for register view
-Route::get('/signup?fail', function () {
-    return view('signup');
+
+// route for loggedin user home view
+Route::get('/home', function () {
+    return view('home');
 });
+// route for search for jobs view
+Route::get('/jobs', function () {
+    return view('jobs');
+});
+// route for search for jobs view
+// Route::get('/profilelist', function () {
+//     return view('profiles');
+// });
+Route::get('/profilelist', 'App\Http\Controllers\UserProfileController@loadAllProfiles');
+
+Route::get('/user', function () {
+    return view('thisUser');
+});
+Route::get('/myprofile', 'App\Http\Controllers\UserProfileController@loadNewEdit');
 
 // Admin Dashboard views and controller mappings
 Route::get('/admin', 'App\Http\Controllers\AdministrationController@index');
@@ -50,15 +65,11 @@ Route::get('/admin/user-edit/{id}', 'App\Http\Controllers\AdministrationControll
 Route::put('/admin/user-update/{id}', 'App\Http\Controllers\AdministrationController@update');
 //delete user button route
 Route::delete('/admin/user-delete/{id}', 'App\Http\Controllers\AdministrationController@delete');
-// route for profile view
-Route::get('/profile', function () {
-    return view('profile');
-});
 
 // See a users skills and experiences
 Route::get('/users/{id}', 'App\Http\Controllers\UserProfileController@index');
 Route::get('/users/{id}/add', 'App\Http\Controllers\UserProfileController@loadAdd');
-Route::get('/users/{id}/edit', 'App\Http\Controllers\UserProfileController@loadEdit');
+Route::get('/users/{id}/edit', 'App\Http\Controllers\UserProfileController@loadEdit')->name('loadUserEdit');
 
 // Routes for user profile forms and update route controllers
 Route::get('/users/{id}/{cvItemId}/edit', 'App\Http\Controllers\UserProfileController@loadCVEdit');

@@ -57,6 +57,29 @@ class SecurityService
         return $response;
     }
 
+    // get user id
+    public function getUser($email) {
+        $res = $this->dao->list([
+            ['EMAIL', '=', $email]
+        ]);
+        if(count($res) == 0) null;
+        $user = $res[0];
+        $userCVDAO = new DAO('cv_items');
+        $userCVItems = $userCVDAO->list([
+            ['USER_ID', '=', $user->ID]
+        ])->toArray();
+        $user->JOBS = array_filter($userCVItems, function($e) {
+            return $e->TYPE === 'JOB';
+        });
+        $user->SKILLS = array_filter($userCVItems, function($e) {
+            return $e->TYPE === 'SKILL';
+        });
+        $user->EDUCATION = array_filter($userCVItems, function($e) {
+            return $e->TYPE === 'LEARNING_EXPERIENCE';
+        });
+        return $user;
+    }
+
     //register form request
     public function register($registerRequest)
     {

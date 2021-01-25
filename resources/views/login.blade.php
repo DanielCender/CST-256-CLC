@@ -9,7 +9,7 @@ My New Job | Login
 <br><br>
 <div class="d-flex flex-column justify-content-center" id="login-box">
     <div class="login-box-header">
-        <h4 style="color:rgb(139,139,139);margin-bottom:0px;font-weight:400;font-size:27px;">Login</h4>
+        <h4 style="color:rgb(139,139,139);font-weight:400;font-size:27px;">Login</h4>
     </div>
     <?php
 //display errors

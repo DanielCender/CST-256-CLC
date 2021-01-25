@@ -1,8 +1,5 @@
 <!DOCTYPE html>
 <html>
-    <?php
-session_start();
-?>
 
     <head>
         <meta charset="utf-8">
@@ -22,14 +19,14 @@ session_start();
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse justify-content-center" id="navbarText">
+                    <a class="navbar-brand" href="/index"><img src="/logo.png" style="width:auto; height:110px;"></a>
                     <ul class="nav navbar-nav">
                         <li class="nav-item"><a class="nav-link active" href="/index">Find Jobs</a></li>
                         <li class="nav-item"><a class="nav-link active" href="/browse">Browse Companies</a></li>
                         <li class="nav-item"><a class="nav-link active" href="/groups">Browse Groups</a></li>
+                        <li class="nav-item" style="text-align: center;"><a class="nav-link" href="/login">Sign
+                                Up/ Log In</a></li>
                     </ul>
-                    <a class="navbar-brand" href="/index"><img src="/logo.png" style="width:auto; height:110px;"></a>
-                    <span class="navbar-text actions" style="text-align: center;"><a class="login" href="/login">Sign
-                            Up/ Log In</a></span>
                 </div>
             </div>
         </nav>

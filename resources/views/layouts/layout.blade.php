@@ -5,11 +5,11 @@
         <title>@yield('title')</title>
     </head>
 
-    <body>
+    <!-- <body> -->
         <div align="center">
             @yield('content')
         </div>
-    </body>
     @include('layouts.footer')
+    </body>
 
 </html>

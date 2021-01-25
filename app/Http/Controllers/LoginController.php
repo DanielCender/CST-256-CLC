@@ -42,11 +42,11 @@ class LoginController extends Controller
 
         //check if login passed
         if ($response->getSuccess()) {
+            session_start();
+            $userWithCVItems = $securityService->getUser($email);
+            $request->session()->put('userId', $userWithCVItems->ID);
             //return if passed
-            return view('profile', array(
-                'email' => $loginRequest->getEmail()
-
-            ));
+            return view('thisUser', ['user' => $userWithCVItems]);
         } else {
             //return if failed
             return view('login', array(
