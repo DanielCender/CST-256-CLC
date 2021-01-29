@@ -80,3 +80,15 @@ Route::post('/users/{id}/add', 'App\Http\Controllers\UserProfileController@addCV
 Route::post('/users/{id}/{cvItemId}/update', 'App\Http\Controllers\UserProfileController@updateCVItem');
 // Delete user CV Item button route
 Route::delete('/users/{id}/{cvItemId}/delete', 'App\Http\Controllers\UserProfileController@deleteCVItem');
+
+
+// Affinity Groups
+Route::get('/groups', 'App\Http\Controllers\AffinityGroupsController@index');
+Route::get('/groups/edit', 'App\Http\Controllers\AffinityGroupsController@loadEdit');
+Route::get('/groups/edit/{id}/edit', 'App\Http\Controllers\AffinityGroupsController@loadGroupEditor');
+Route::post('/groups/edit/{id}/update', 'App\Http\Controllers\AffinityGroupsController@updateGroup');
+Route::delete('/groups/edit/{id}/delete', 'App\Http\Controllers\AffinityGroupsController@deleteGroup');
+
+// Affinity Groups Users
+Route::post('/groups/{groupId}/{userId}/add', 'App\Http\Controllers\AffinityGroupsController@addUserToGroup');
+Route::delete('/groups/{groupId}/{userId}/delete', 'App\Http\Controllers\AffinityGroupsController@removeUserFromGroup');
