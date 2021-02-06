@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-			Group Browser
+			User's Group Browser
 @endsection()
 
 @section('content')
@@ -49,6 +49,20 @@
                         <td>{{ $row->DESCRIPTION }}</td>
                         <td>{{ $row->TYPE }}</td>
 					    <td>N/A</td>
+                        <td>
+                         @if($row->JOINED)
+                          <form action="/groups/{{ $row->ID }}/{{ $userId }}/delete" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-danger">Leave</button>
+                          </form>
+                        @else
+                            <form action="/groups/{{ $row->ID }}/{{ $userId }}/add" method="post">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-primary">Join</button>
+                          </form>
+                        @endif
+                        </td>
                        </tr>
                        @endforeach()
                     </tbody>

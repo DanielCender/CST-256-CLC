@@ -32,6 +32,7 @@ My Profile
                 <div class="card">
                     <div class="card-body">
                         <a href="/users/{{ $user->ID }}/edit" class="btn btn-success">Add / Edit CV Items</a>
+                        <a href="/myjobs" class="btn btn-success">Add / Edit My Job Postings</a>
                     </div>
                 </div>
                 <h4 class="card-title">Jobs</h4>

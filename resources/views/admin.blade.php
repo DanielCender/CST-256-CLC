@@ -76,6 +76,9 @@
             </div>
           </div>
         </div>
+        <div class="text-center mt-4">
+          <a href="/groups/edit" class="btn btn-success">Edit Groups</a>
+        </div>
       </div>
     </div>
   </div>

@@ -14,8 +14,10 @@ class AffinityGroupsController extends Controller
     // Runs before /groups renders
     public function index(Request $request) {
         // check if user is logged in
-        // $id = $request->session()->get('userId', null);
-        // if(!$id) return view('login');
+        $id = $request->session()->get('userId', null);
+        // Go to actual user group selector
+        if($id) return redirect()->action([UserProfileController::class, 'loadGroupsByUser']);
+
         // $userDAO = new DAO('users');
         // $user = $userDAO->get($id);
         $groupsDAO = new DAO('affinity_groups');
@@ -72,7 +74,7 @@ class AffinityGroupsController extends Controller
         ]);
 
         if($res) {
-            return $this->loadEdit();
+            return redirect()->action([AffinityGroupsController::class, 'loadEdit']);
         }
     }
     // Runs after receiving DELETE HTTP request
@@ -86,8 +88,89 @@ class AffinityGroupsController extends Controller
         }
     }
 
+    public function createGroup(Request $request) {
+        $name = $request->input('name');
+        $description = $request->input('description');
+        $type = $request->input('type');
+
+        $groupsDAO = new DAO('affinity_groups');
+
+        $res = $groupsDAO->create([
+            'NAME' => $name,
+            'DESCRIPTION' => $description,
+            'TYPE' => $type
+        ]);
+
+        if($res) {
+            return redirect()->action([AffinityGroupsController::class, 'loadEdit']);
+        }
+        return redirect('affinity-group-create');
+    }
+
     // Adds a user to the group specified
     public function addUserToGroup(Request $request, $groupId, $userId) {
+        $groupUsersDAO = new DAO('affinity_group_users');
+        $userDAO = new DAO('users');
+        $groupsDAO = new DAO('affinity_groups');
+        // Verify user and group existence
+        $user = $userDAO->get($userId);
+        $group = $groupsDAO->get($groupId);
+        // Verify user isn't already part of group
+        $alreadyIn = $groupUsersDAO->list([[
+            'USER_ID',
+            '=',
+            $userId
+        ], [
+            'GROUP_ID',
+            '=',
+            $groupId
+        ]]);
 
+        if(!$user or !$group or (count($alreadyIn) > 0)) {
+            // Don't try to add user
+            return redirect('affinity-groups');
+        }
+
+        $res = $groupUsersDAO->create([
+            'USER_ID' => $userId,
+            'GROUP_ID' => $groupId
+        ]);
+
+        if($res) {
+            return redirect()->action([UserProfileController::class, 'loadGroupsByUser']);
+        }
+        return redirect('affinity-groups');
     }
+    public function removeUserFromGroup(Request $request, $groupId, $userId) {
+        $groupUsersDAO = new DAO('affinity_group_users');
+        $userDAO = new DAO('users');
+        $groupsDAO = new DAO('affinity_groups');
+        // Verify user and group existence
+        $user = $userDAO->get($userId);
+        $group = $groupsDAO->get($groupId);
+        // Verify user isn't already part of group
+        $alreadyIn = $groupUsersDAO->list([[
+            'USER_ID',
+            '=',
+            $userId
+        ], [
+            'GROUP_ID',
+            '=',
+            $groupId
+        ]]);
+
+        if(!$user or !$group or (count($alreadyIn) == 0)) {
+            // Don't try to remove user
+            return redirect('affinity-groups');
+        }
+
+        $res = $groupUsersDAO->delete($alreadyIn[0]->ID);
+
+        if($res) {
+            return redirect()->action([UserProfileController::class, 'loadGroupsByUser']);
+        }
+        return redirect('affinity-groups');
+    }
+
+
 }

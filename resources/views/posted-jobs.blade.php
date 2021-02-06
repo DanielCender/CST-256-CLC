@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-			Group Browser
+			User's Posted Jobs Browser
 @endsection()
 
 @section('content')
@@ -9,7 +9,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 align-self-center" style="margin: 100px 0px 0px 0px;">
-                        <h2 class="text-center" style="margin: 0px 0px 30px;">Search Groups</h2>
+                        <h2 class="text-center" style="margin: 0px 0px 30px;">Posted Jobs</h2>
                     </div>
                 </div>
             </div>
@@ -27,6 +27,7 @@
                                   {{ session('status') }}
                               </div>
                   @endif
+									 <a href="/jobs/create" class="btn btn-success mb-3 text-white">Post Job</a>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -35,20 +36,32 @@
                       <!-- fetch table data -->
                       <th>ID</th>
                       <th>Name</th>
-                      <th>Description</th>
+                      <th>Institution</th>
+											<th>Ideal Start Date</th>
                       <th>Type</th>
-                      <th>User Count</th>
-                      <!-- <th>Join/Leave</th> -->
+                      <th>Edit</th>
+                      <th>Delete</th>
                     </thead>
                     <tbody>
                       <!--fetch table data -->
-                      @foreach($groups as $row)
+                      @foreach($jobs as $row)
                       <tr>
                         <td>{{ $row->ID }}</td>
                         <td>{{ $row->NAME }}</td>
-                        <td>{{ $row->DESCRIPTION }}</td>
+                        <td>{{ $row->INSTITUTION }}</td>
+                        <td>{{ $row->IDEAL_START_DATE }}</td>
                         <td>{{ $row->TYPE }}</td>
-					    <td>N/A</td>
+					    			<td>
+                      <a href="/jobs/{{ $row->ID }}/edit" class="btn btn-success">EDIT</a>
+                    </td>
+                    <td>
+                      <!-- we have to add form method because without form method it will show error-->
+                      <form action="/jobs/{{ $row->ID }}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button type="submit" class="btn btn-danger">DELETE</button>
+                      </form>
+                    </td>
                        </tr>
                        @endforeach()
                     </tbody>

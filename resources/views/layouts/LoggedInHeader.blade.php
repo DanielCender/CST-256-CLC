@@ -45,6 +45,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/jobs">Jobs</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/groups">Groups</a>
+                        </li>
                         <!--Someway get this to change to the user's name when they log in-->
                         <li class="nav-item">
                             <a class="nav-link" href="/myprofile">My Profile</a>

@@ -97,8 +97,31 @@ class UserProfileController extends Controller
         if($res) {
             $data = $this->loadData($id);
             return redirect()->route('loadUserEdit', ['id' => $id]);
-            //  return redirect()->action([UserProfileController::class, 'loadEdit', []]);
         }
+    }
+    public function loadGroupsByUser(Request $request) {
+        $groupsDAO = new DAO('affinity_groups');
+        $id = $request->session()->get('userId', null);
+        if(!$id) return view('login');
+        $groupUsersDAO = new DAO('affinity_group_users');
+
+        $data = $groupsDAO->list();
+        $modifiedGroups = array_map(function ($el) use ($id, $groupUsersDAO) {
+            $usersGroups = $groupUsersDAO->list([['USER_ID', '=', $id], ['GROUP_ID', '=', $el->ID]])->toArray();
+            $el->JOINED = count($usersGroups) > 0;
+            return $el;
+        }, $data->toArray());
+
+        return view('affinity-groups-assigned', ['groups' => $modifiedGroups, 'userId' => $id]);
+    }
+    public function loadJobsByUser(Request $request) {
+        $id = $request->session()->get('userId', null);
+        if(!$id) return view('login');
+
+        $jobsDAO = new DAO('job_postings');
+        $res = $jobsDAO->list([['USER_ID', '=', $id]]);
+
+        return view('posted-jobs', ['jobs' => $res]);
     }
     public function loadData($id) {
         $userDAO = new DAO('users');

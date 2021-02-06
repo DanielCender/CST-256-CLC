@@ -190,11 +190,14 @@ CST-256-CLC
 ('Plumbers', 'A place for plumbers to connect', 'CAREER'),
 ('Stock Brokers', 'A place for stock brokers to connect', 'CAREER')
 
-
+DROP TABLE IF EXISTS `affinity_group_users`
 CREATE TABLE `CST-256-CLC`.`affinity_group_users`
 (
+	ID int NOT NULL AUTO_INCREMENT,
 	USER_ID int NOT NULL,
 	GROUP_ID int NOT NULL,
+	PRIMARY KEY
+(ID),
 	FOREIGN KEY
 (USER_ID)
 		REFERENCES users
@@ -207,6 +210,7 @@ REFERENCES affinity_groups
 		ON
 DELETE CASCADE
 );
+
 
 INSERT INTO `
 CST-256-CLC

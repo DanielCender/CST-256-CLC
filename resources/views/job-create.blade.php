@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-			Group Browser
+			Create Job Posting
 @endsection()
 
 @section('content')
@@ -9,57 +9,57 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 align-self-center" style="margin: 100px 0px 0px 0px;">
-                        <h2 class="text-center" style="margin: 0px 0px 30px;">Search Groups</h2>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <!-- <h4 class="card-title"> Registered User's</h4> -->
-                  <!-- for show the message updadated copy from home.blade.phpfile-->
-                 @if (session('status'))
-                              <div class="alert alert-success" role="alert">
-                                  {{ session('status') }}
-                              </div>
-                  @endif
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class=" text-primary">
-                      <!-- fetch table data -->
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Type</th>
-                      <th>User Count</th>
-                      <!-- <th>Join/Leave</th> -->
-                    </thead>
-                    <tbody>
-                      <!--fetch table data -->
-                      @foreach($groups as $row)
-                      <tr>
-                        <td>{{ $row->ID }}</td>
-                        <td>{{ $row->NAME }}</td>
-                        <td>{{ $row->DESCRIPTION }}</td>
-                        <td>{{ $row->TYPE }}</td>
-					    <td>N/A</td>
-                       </tr>
-                       @endforeach()
-                    </tbody>
-                  </table>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12"><!-- 12 row -->
+							<div class="card">
+								<div class="card-header">
+									<h3>Post A New Job</h3>
+								</div>
+				<div class="card-body">
+				 <form action="/jobs/create" method="post">
+        	{{ csrf_field() }}
+						<div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" name="name" class="form-control" placeholder="Name" required>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-        </div>
-
+            <div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <input type="text" name="description" class="form-control" placeholder="Tell us about this group, who is it for?..." required>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Institution</label>
+                    <input type="text" name="institution" class="form-control" placeholder="What company or organization?" required>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Ideal Start Date</label>
+                    <input type="date" name="idealStartDate" class="form-control">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Type</label>
+                    <input type="text" name="type" class="form-control" placeholder="Some value to group this job posting with others like it.">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-danger">ADD</button>
+        	</form>
+					</div>
+					</div>
+						</div>
+							</div>
 
         <div>
             <div class="container">

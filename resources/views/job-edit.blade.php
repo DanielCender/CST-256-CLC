@@ -1,11 +1,10 @@
 @extends('layouts.layout')
 
 @section('title')
-			Group Browser
+			Edit Job Posting
 @endsection()
 
 @section('content')
-
         <nav class="navbar navbar-dark navbar-expand-lg bg-secondary navigation-clean-button" style="font-size: 14px;">
             <div class="container"><a class="navbar-brand" href="/index">MyNewJob</a><button data-toggle="collapse"
                     class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
@@ -25,71 +24,57 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 align-self-center" style="margin: 100px 0px 0px 0px;">
-                        <h2 class="text-center" style="margin: 0px 0px 30px;">Search Groups</h2>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <!-- <h4 class="card-title"> Registered User's</h4> -->
-                  <!-- for show the message updadated copy from home.blade.phpfile-->
-                 @if (session('status'))
-                              <div class="alert alert-success" role="alert">
-                                  {{ session('status') }}
-                              </div>
-                  @endif
-                  <a href="/groups/edit/create" class="btn btn-success">Create New Group</a>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class=" text-primary">
-                      <!-- fetch table data -->
-                      <th>ID</th>
-                      <th>Name</th>
-                      <th>Description</th>
-                      <th>Type</th>
-                      <th>User Count</th>
-                      <th>Edit</th>
-                      <th>Delete</th>
-                    </thead>
-                    <tbody>
-                      <!--fetch table data -->
-                      @foreach($groups as $row)
-                      <tr>
-                        <td>{{ $row->ID }}</td>
-                        <td>{{ $row->NAME }}</td>
-                        <td>{{ $row->DESCRIPTION }}</td>
-                        <td>{{ $row->TYPE }}</td>
-												<td>N/A</td>
-												<td>
-                          <a href="/groups/edit/{{ $row->ID }}/edit" class="btn btn-success">EDIT</a>
-                        </td>
-                        <td>
-                          <!-- we have to add form method because without form method it will show error-->
-                          <form action="/groups/edit/{{ $row->ID }}/delete" method="post">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <button type="submit" class="btn btn-danger">DELETE</button>
-<!-- <a href="/role-delete/" class="btn btn-danger">DELETE</a> it is not working or we are not submitting it-->
-                          </form>
-                        </td>
-                       </tr>
-                       @endforeach()
-                    </tbody>
-                  </table>
+				<div class="container">
+					<div class="row">
+						<div class="col-md-12"><!-- 12 row -->
+							<div class="card">
+								<div class="card-header">
+									<h3>Edit A Job</h3>
+								</div>
+				<div class="card-body">
+				 <form action="/jobs/{{ $item->ID }}/update" method="post">
+        	{{ csrf_field() }}
+						<div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" name="name" value="{{ $item->NAME }}" class="form-control" placeholder="Name" required>
                 </div>
-              </div>
             </div>
-          </div>
-        </div>
-        </div>
-
+            <div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Description</label>
+                    <input type="text" name="description" value="{{ $item->DESCRIPTION }}" class="form-control" placeholder="Tell us about this group, who is it for?..." required>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Institution</label>
+                    <input type="text" name="institution" value="{{ $item->INSTITUTION }}" class="form-control" placeholder="What company or organization?" required>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Ideal Start Date</label>
+                    <input type="date" name="idealStartDate" value="{{ $item->IDEAL_START_DATE }}" class="form-control">
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="mb-3">
+                    <label class="form-label">Type</label>
+                    <input type="text" name="type" value="{{ $item->TYPE }}" class="form-control" placeholder="Some value to group this job posting with others like it.">
+                </div>
+            </div>
+            <button type="submit" class="btn btn-danger">UPDATE</button>
+        	</form>
+					</div>
+					</div>
+						</div>
+							</div>
 
         <div>
             <div class="container">
