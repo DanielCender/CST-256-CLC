@@ -1,10 +1,26 @@
 @extends('layouts.layout')
 
 @section('title')
-			Group Browser
+			User's Group Browser
 @endsection()
 
 @section('content')
+
+        <nav class="navbar navbar-dark navbar-expand-lg bg-secondary navigation-clean-button" style="font-size: 14px;">
+            <div class="container"><a class="navbar-brand" href="/index">MyNewJob</a><button data-toggle="collapse"
+                    class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span
+                        class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="nav navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link active" href="/index">Find Jobs</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Browse Companies</a></li>
+                    </ul><span class="ml-auto navbar-text actions"> <a class="login" href="/Emplogin">Employers/ Post
+                            Jobs</a></span><span class="ml-auto navbar-text actions" style="text-align: center;"> <a
+                            class="login" href="/signup"><strong>Sign Up</strong></a><a class="login" href="/login">Log
+                            In</a></span>
+                </div>
+            </div>
+        </nav>
         <div>
             <div class="container">
                 <div class="row">
@@ -49,6 +65,20 @@
                         <td>{{ $row->DESCRIPTION }}</td>
                         <td>{{ $row->TYPE }}</td>
 					    <td>N/A</td>
+                        <td>
+                         @if($row->JOINED)
+                          <form action="/groups/{{ $row->ID }}/{{ $userId }}/delete" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="submit" class="btn btn-danger">Leave</button>
+                          </form>
+                        @else
+                            <form action="/groups/{{ $row->ID }}/{{ $userId }}/add" method="post">
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-primary">Join</button>
+                          </form>
+                        @endif
+                        </td>
                        </tr>
                        @endforeach()
                     </tbody>
