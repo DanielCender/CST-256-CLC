@@ -8,6 +8,7 @@
         <!--Stylesheets-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+        <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous">
         </script>
@@ -26,7 +27,7 @@
 
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <!--Search Form-->
-                    <form class="row row-cols-lg-auto align-items-center">
+                    <form class="row row-cols-lg-auto">
                         <div class="col-12">
                             <div class="input-group input-group-sm">
                                 <input type="text" class="form-control" placeholder="Search">
@@ -37,18 +38,21 @@
                     </form>
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/home">Home</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="/profilelist">Profiles</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/jobs">Jobs</a>
                         </li>
-                        <!--Someway get this to change to the user's name when they log in-->
-                        <li class="nav-item">
-                            <a class="nav-link" href="/myprofile">My Profile</a>
-                        </li>
+                        <!--TODO: Someway get this to change to the user's name when they log in and change signout to actually sign out-->
+                        <div class="nav-item dropdown">
+                            <li role="button" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+                                Me
+                            </li>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" href="/myprofile">My Profile</a></li>
+                                <li><a class="dropdown-item" href="/">Sign Out</a></li>
+                            </ul>
+                            </li>
                     </ul>
                 </div>
             </div>
