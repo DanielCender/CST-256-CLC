@@ -97,7 +97,6 @@ class UserProfileController extends Controller
         if($res) {
             $data = $this->loadData($id);
             return redirect()->route('loadUserEdit', ['id' => $id]);
-            //  return redirect()->action([UserProfileController::class, 'loadEdit', []]);
         }
     }
     public function loadGroupsByUser(Request $request) {
@@ -114,6 +113,15 @@ class UserProfileController extends Controller
         }, $data->toArray());
 
         return view('affinity-groups-assigned', ['groups' => $modifiedGroups, 'userId' => $id]);
+    }
+    public function loadJobsByUser(Request $request) {
+        $id = $request->session()->get('userId', null);
+        if(!$id) return view('login');
+
+        $jobsDAO = new DAO('job_postings');
+        $res = $jobsDAO->list([['USER_ID', '=', $id]]);
+
+        return view('posted-jobs', ['jobs' => $res]);
     }
     public function loadData($id) {
         $userDAO = new DAO('users');

@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-			Create Job Posting
+			User's Posted Jobs Browser
 @endsection()
 
 @section('content')
@@ -9,57 +9,70 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 align-self-center" style="margin: 100px 0px 0px 0px;">
+                        <h2 class="text-center" style="margin: 0px 0px 30px;">Posted Jobs</h2>
                     </div>
                 </div>
             </div>
         </div>
 
-				<div class="container">
-					<div class="row">
-						<div class="col-md-12"><!-- 12 row -->
-							<div class="card">
-								<div class="card-header">
-									<h3>Post A New Job</h3>
-								</div>
-				<div class="card-body">
-				 <form action="/jobs/create" method="post">
-        	{{ csrf_field() }}
-						<div class="col-12">
-                <div class="mb-3">
-                    <label class="form-label">Name</label>
-                    <input type="text" name="name" class="form-control" placeholder="Name" required>
+        <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <!-- <h4 class="card-title"> Registered User's</h4> -->
+                  <!-- for show the message updadated copy from home.blade.phpfile-->
+                 @if (session('status'))
+                              <div class="alert alert-success" role="alert">
+                                  {{ session('status') }}
+                              </div>
+                  @endif
+									 <a href="/jobs/create" class="btn btn-success mb-3 text-white">Post Job</a>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <!-- fetch table data -->
+                      <th>ID</th>
+                      <th>Name</th>
+                      <th>Institution</th>
+											<th>Ideal Start Date</th>
+                      <th>Type</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
+                    </thead>
+                    <tbody>
+                      <!--fetch table data -->
+                      @foreach($jobs as $row)
+                      <tr>
+                        <td>{{ $row->ID }}</td>
+                        <td>{{ $row->NAME }}</td>
+                        <td>{{ $row->INSTITUTION }}</td>
+                        <td>{{ $row->IDEAL_START_DATE }}</td>
+                        <td>{{ $row->TYPE }}</td>
+					    			<td>
+                      <a href="/jobs/{{ $row->ID }}/edit" class="btn btn-success">EDIT</a>
+                    </td>
+                    <td>
+                      <!-- we have to add form method because without form method it will show error-->
+                      <form action="/jobs/{{ $row->ID }}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button type="submit" class="btn btn-danger">DELETE</button>
+                      </form>
+                    </td>
+                       </tr>
+                       @endforeach()
+                    </tbody>
+                  </table>
                 </div>
+              </div>
             </div>
-            <div class="col-12">
-                <div class="mb-3">
-                    <label class="form-label">Description</label>
-                    <input type="text" name="description" class="form-control" placeholder="Tell us about this group, who is it for?..." required>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="mb-3">
-                    <label class="form-label">Institution</label>
-                    <input type="text" name="institution" class="form-control" placeholder="What company or organization?" required>
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="mb-3">
-                    <label class="form-label">Ideal Start Date</label>
-                    <input type="date" name="idealStartDate" class="form-control">
-                </div>
-            </div>
-            <div class="col-12">
-                <div class="mb-3">
-                    <label class="form-label">Type</label>
-                    <input type="text" name="type" class="form-control" placeholder="Some value to group this job posting with others like it.">
-                </div>
-            </div>
-            <button type="submit" class="btn btn-danger">ADD</button>
-        	</form>
-					</div>
-					</div>
-						</div>
-							</div>
+          </div>
+        </div>
+        </div>
+
 
         <div>
             <div class="container">

@@ -67,4 +67,39 @@ class JobPostingController extends Controller
         }
         return view('job-create');
     }
+    public function loadEdit(Request $request, $jobId) {
+        // $jobId = $request->input('jobId')
+         $jobsDAO = new DAO('job_postings');
+         $job = $jobsDAO->get($jobId);
+
+         return view('job-edit', ['item' => $job]);
+    }
+    public function updateJob(Request $request, $jobId) {
+        $jobsDAO = new DAO('job_postings');
+
+        $name = $request->input('name');
+        $description = $request->input('description');
+        $institution = $request->input('institution');
+        $idealStartDate = $request->input('idealStartDate');
+        $type = $request->input('type');
+
+        $res = $jobsDAO->update($jobId, [
+            'NAME' => $name,
+            'DESCRIPTION' => $description,
+            'INSTITUTION' => $institution,
+            'IDEAL_START_DATE' => $idealStartDate,
+            'TYPE' => $type
+        ]);
+
+        if($res) {
+            return redirect()->action([UserProfileController::class, 'loadJobsByUser']);
+        }
+    }
+    public function deleteJob($jobId) {
+        $jobsDAO = new DAO('job_postings');
+        $res = $jobsDAO->delete($jobId);
+        if($res) {
+            return redirect()->action([UserProfileController::class, 'loadJobsByUser']);
+        }
+    }
 }

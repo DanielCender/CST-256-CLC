@@ -112,11 +112,15 @@ Route::get('/jobs', 'App\Http\Controllers\JobPostingController@index');
 Route::get('/jobs/create', function() {
     return view('job-create');
 });
+
+// TODO
 Route::get('/jobs/{jobId}/edit', 'App\Http\Controllers\JobPostingController@loadEdit');
 // TODO
 Route::get('/myjobs', 'App\Http\Controllers\UserProfileController@loadJobsByUser');
 
 // Data Ops
 Route::post('/jobs/create', 'App\Http\Controllers\JobPostingController@createJob');
+// TODO
 Route::post('/jobs/{jobId}/update', 'App\Http\Controllers\JobPostingController@updateJob');
-Route::delete('/jobs/{jobId}', 'App\Http\Controllers\JobPostingController@updateJob');
+// TODO
+Route::delete('/jobs/{jobId}', 'App\Http\Controllers\JobPostingController@deleteJob');

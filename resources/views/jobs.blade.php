@@ -29,6 +29,9 @@ Search For Jobs
                         <div class="col-md-2 col-xs-12">
                             <a href="/jobs/create" class="btn mb-3" style="background-color:#5CFF7C;">Post Job</a>
                         </div>
+                        <div class="col-md-2 col-xs-12">
+                            <a href="/myjobs" class="btn mb-3" style="background-color:#5CFF7C;">View my Posted Jobs</a>
+                        </div>
                     </div>
 
                 </form>
