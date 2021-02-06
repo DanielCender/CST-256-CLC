@@ -100,25 +100,12 @@ class UserProfileController extends Controller
             //  return redirect()->action([UserProfileController::class, 'loadEdit', []]);
         }
     }
-    function isPartOfGroup($el) {
-        $id = $request->session()->get('userId', null);
-        $groupUsersDAO = new DAO('affinity_group_users');
-        $usersGroups = $groupUsersDAO->list([['USER_ID', '=', $id]])->toArray();
-        $el->JOINED = count($usersGroups) > 0;
-        return $el;
-    }
     public function loadGroupsByUser(Request $request) {
         $groupsDAO = new DAO('affinity_groups');
         $id = $request->session()->get('userId', null);
         if(!$id) return view('login');
         $groupUsersDAO = new DAO('affinity_group_users');
-        // $map = function($el) {
-        //     // global $groupUsersDAO;
-        //     $groupUsersDAO = new DAO('affinity_group_users');
-        //     $usersGroups = $groupUsersDAO->list([['USER_ID', '=', $id]])->toArray();
-        //     $el->JOINED = count($usersGroups) > 0;
-        //     return $el;
-        // };
+
         $data = $groupsDAO->list();
         $modifiedGroups = array_map(function ($el) use ($id, $groupUsersDAO) {
             $usersGroups = $groupUsersDAO->list([['USER_ID', '=', $id], ['GROUP_ID', '=', $el->ID]])->toArray();

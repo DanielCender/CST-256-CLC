@@ -11,14 +11,34 @@ class JobPostingController extends Controller
     public function index(Request $request) {
         $id = $request->input('selected');
         $jobsDAO = new DAO('job_postings');
+        $userDAO = new DAO('users');
 
         $jobs = $jobsDAO->list();
-        $params = ['jobs' => $jobs];
+        $params = ['jobs' => $jobs, 'name' => '', 'institution' => ''];
         if($id) {
             $job = $jobsDAO->get($id);
+            $contact = $userDAO->get($job->USER_ID);
             // set parameters for selected item
             $params['selected'] = true;
             $params['item'] = $job;
+            $params['item']->CONTACT = $contact->EMAIL;
+        }
+
+        // Figure out if we need to filter search results
+        $name = $request->input('name');
+        $institution = $request->input('institution');
+
+        if($name) {
+            $params['name'] = $name;
+            $params['jobs'] = array_filter($jobs->toArray(), function($el) use ($name) {
+                return strpos(strtolower($el->NAME), strtolower($name));
+            });
+        }
+        if($institution) {
+            $params['institution'] = $institution;
+            $params['jobs']= array_filter($jobs->toArray(), function ($el) use ($institution) {
+                return strpos(strtolower($el->INSTITUTION), strtolower($institution));
+            });
         }
 
         return view('jobs', $params);
