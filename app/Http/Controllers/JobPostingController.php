@@ -4,12 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\Data\DAO;
+// use App\Services\Business\JobPostingService;
 
 class JobPostingController extends Controller
 {
+    private $service;
+    // function __construct() {
+    //     $this->service = new JobPostingService();
+    // }
     //
     public function index(Request $request) {
         $id = $request->input('selected');
+        $name = $request->input('name');
+        $institution = $request->input('institution');
+
+
+
         $jobsDAO = new DAO('job_postings');
         $userDAO = new DAO('users');
 
@@ -25,9 +35,6 @@ class JobPostingController extends Controller
         }
 
         // Figure out if we need to filter search results
-        $name = $request->input('name');
-        $institution = $request->input('institution');
-
         if($name) {
             $params['name'] = $name;
             $params['jobs'] = array_filter($jobs->toArray(), function($el) use ($name) {
