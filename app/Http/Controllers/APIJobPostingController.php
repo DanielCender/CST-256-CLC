@@ -8,7 +8,6 @@ use App\Models\DTO;
 
 class APIJobPostingController extends Controller
 {
-    //
  public function index(Request $request) {
         $jobsDAO = new DAO('job_postings');
 
