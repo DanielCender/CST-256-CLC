@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Services\Data\DAO;
 use App\Models\DTO;
 use App\Models\UserUpdateModel;
+use Exception;
 
 class APIUserController extends Controller
 {
  public function index(Request $request) {
         $dto = new DTO();
+        try {
         $userDAO = new DAO('users');
 
         $email = $request->query('email');
@@ -55,7 +57,10 @@ class APIUserController extends Controller
         $dto->data = array_map(function($el) {
             return new UserUpdateModel($el->ID, $el->EMAIL, $el->FIRSTNAME, $el->LASTNAME, $el->ROLE, $el->SUSPENDED);
         }, $userDAO->list($filters)->toArray());
-
+    } catch (Exception $e) {
+        $dto->errorCode = 500;
+        $dto->errorMessage = 'An error occurred while processing your request. Msg: ' . $e->getMessage();
+    }
         return $dto;
     }
 }

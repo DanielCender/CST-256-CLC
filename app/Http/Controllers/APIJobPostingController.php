@@ -6,18 +6,24 @@ use Illuminate\Http\Request;
 use App\Services\Data\DAO;
 use App\Models\DTO;
 use App\Models\JobPostingModel;
+use Exception;
 
 class APIJobPostingController extends Controller
 {
  public function index(Request $request) {
+     $dto = new DTO();
+    try {
         $jobsDAO = new DAO('job_postings');
-
-        $dto = new DTO();
         $dto->data = $jobsDAO->list();
+    } catch (Exception $e) {
+        $dto->errorCode = 500;
+        $dto->errorMessage = 'An error occurred while processing your request. Msg: ' . $e->getMessage();
+    }
         return $dto;
     }
  public function findSpecific(Request $request) {
         $dto = new DTO();
+    try {
         $jobsDAO = new DAO('job_postings');
 
         $name = $request->query('name');
@@ -56,7 +62,10 @@ class APIJobPostingController extends Controller
         $dto->data = array_map(function($el) {
             return new JobPostingModel($el->ID, $el->NAME, $el->DESCRIPTION, $el->INSTITUTION, $el->IDEAL_START_DATE, $el->TYPE, $el->USER_ID);
         }, $jobsDAO->list($filters)->toArray());
-
+    } catch (Exception $e) {
+        $dto->errorCode = 500;
+        $dto->errorMessage = 'An error occurred while processing your request. Msg: ' . $e->getMessage();
+    }
         return $dto;
     }
 }
