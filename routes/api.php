@@ -19,5 +19,5 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/jobs', 'App\Http\Controllers\APIJobPostingController@index');
-Route::get('/jobs/{keyword}', 'App\Http\Controllers\APIJobPostingController@findSpecific');
-Route::get('/user/{email}', 'App\Http\Controllers\APIUserController@index');
+Route::get('/jobs/search', 'App\Http\Controllers\APIJobPostingController@findSpecific');
+Route::get('/user/search', 'App\Http\Controllers\APIUserController@index');

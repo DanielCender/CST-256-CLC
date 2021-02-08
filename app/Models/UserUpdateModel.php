@@ -10,7 +10,9 @@
  */
 namespace App\Models;
 
-class UserUpdateModel
+use JsonSerializable;
+
+class UserUpdateModel implements JsonSerializable
 {
 
     // variables
@@ -132,5 +134,17 @@ class UserUpdateModel
     public function setId($id)
     {
         $this->id = $id;
+    }
+
+
+    public function jsonSerialize() {
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'firstName' => $this->firstName,
+            'lastName' => $this->lastName,
+            'role' => $this->role,
+            'suspended' => $this->suspended
+        ];
     }
 }
