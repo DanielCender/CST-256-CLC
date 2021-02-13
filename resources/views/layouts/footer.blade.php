@@ -6,10 +6,10 @@
             <div class="col-sm-6 col-md-3 item">
                 <h3>Services</h3>
                 <ul style="padding: 0; list-style-type: none;">
-                    <li><a class="text-white" href="#">Find A Job</a></li>
-                    <li><a class="text-white" href="#">Connect With Others</a></li>
-                    <li><a class="text-white" href="#">Search a Company</a></li>
-                    <li><a class="text-white" href="#">Work With Us</a></li>
+                    <li><a class="text-white" href="/jobs">Find A Job</a></li>
+                    <li><a class="text-white" href="/profilelist">Connect With Others</a></li>
+                    <!-- <li><a class="text-white" href="#">Search a Company</a></li> -->
+                    <!-- <li><a class="text-white" href="#">Work With Us</a></li> -->
                 </ul>
             </div>
             <div class="col-sm-6 col-md-3 item">
