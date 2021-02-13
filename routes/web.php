@@ -109,9 +109,11 @@ Route::delete('/groups/{groupId}/{userId}/delete', 'App\Http\Controllers\Affinit
 
 // Views
 Route::get('/jobs', 'App\Http\Controllers\JobPostingController@index');
-Route::get('/jobs/create', function() {
-    return view('job-create');
-});
+Route::get('/jobs/create', 'App\Http\Controllers\JobPostingController@loadCreate');
+
+// function() {
+//     return view('job-create');
+// });
 
 // TODO
 Route::get('/jobs/{jobId}/edit', 'App\Http\Controllers\JobPostingController@loadEdit');

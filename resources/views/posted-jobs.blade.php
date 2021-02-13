@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.mainLayout')
 
 @section('title')
 			User's Posted Jobs Browser

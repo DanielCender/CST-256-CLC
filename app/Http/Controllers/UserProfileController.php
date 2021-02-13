@@ -28,6 +28,7 @@ class UserProfileController extends Controller
     // New profile page makes use of the PHP session cookie.
     public function loadNewEdit(Request $request) {
         $id = $request->session()->get('userId', null);
+         if(!$id) return view('login');
         $data = $this->loadData($id);
         return view('selfInfo', $data);
     }

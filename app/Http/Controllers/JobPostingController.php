@@ -4,15 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\Data\DAO;
-// use App\Services\Business\JobPostingService;
 
 class JobPostingController extends Controller
 {
     private $service;
-    // function __construct() {
-    //     $this->service = new JobPostingService();
-    // }
-    //
     public function index(Request $request) {
         $id = $request->input('selected');
         $name = $request->input('name');
@@ -49,6 +44,13 @@ class JobPostingController extends Controller
         }
 
         return view('jobs', $params);
+    }
+    public function loadCreate(Request $request) {
+         $id = $request->session()->get('userId', null);
+         if(!$id) {
+            return view('login');
+         }
+         return view('job-create');
     }
     public function createJob(Request $request) {
         $id = $request->session()->get('userId', null);
