@@ -25,6 +25,32 @@ class UserProfileController extends Controller
         $data = $this->loadData($id);
         return view('cv-edit', $data);
     }
+    public function loadProfileEdit(Request $request, $id) {
+         $loggedInId = $request->session()->get('userId', null);
+         if(!$loggedInId or ($loggedInId != $id)) return view('login');
+         $userDAO = new DAO('users');
+         $user = $userDAO->get($id);
+        if(isset($user)) {
+            return view('selfInfoEdit')->with('user', $user);
+        }
+        return redirect('index');
+    }
+    public function applyProfileEdit(Request $request, $id) {
+        $firstName = $request->input('firstname');
+        $lastName = $request->input('lastname');
+        $email = $request->input('email');
+
+        $userDAO = new DAO('users');
+        $res = $userDAO->update($id, [
+            'FIRSTNAME' => $firstName,
+            'LASTNAME' => $lastName,
+            'EMAIL' => $email
+        ]);
+
+        if($res) {
+            return redirect()->action([UserProfileController::class, 'loadNewEdit']);
+        }
+    }
     // New profile page makes use of the PHP session cookie.
     public function loadNewEdit(Request $request) {
         $id = $request->session()->get('userId', null);

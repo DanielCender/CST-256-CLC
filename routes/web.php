@@ -70,7 +70,8 @@ Route::delete('/admin/user-delete/{id}', 'App\Http\Controllers\AdministrationCon
 Route::get('/users/{id}', 'App\Http\Controllers\UserProfileController@index');
 Route::get('/users/{id}/add', 'App\Http\Controllers\UserProfileController@loadAdd');
 Route::get('/users/{id}/edit', 'App\Http\Controllers\UserProfileController@loadEdit')->name('loadUserEdit');
-
+Route::get('/users/{id}/profile/edit', 'App\Http\Controllers\UserProfileController@loadProfileEdit');
+Route::post('/users/{id}/profile/update', 'App\Http\Controllers\UserProfileController@applyProfileEdit');
 // Routes for user profile forms and update route controllers
 Route::get('/users/{id}/{cvItemId}/edit', 'App\Http\Controllers\UserProfileController@loadCVEdit');
 

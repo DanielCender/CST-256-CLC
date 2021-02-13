@@ -19,7 +19,7 @@ My Profile
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body" style="text-align: center;"><img src="https://bootdey.com/img/Content/avatar/avatar1.png" style="height:180px; width:180px;">
-                        <h4 class="card-title">Full Name Here</h4>
+                        <h4 class="card-title">{{ $user->FIRSTNAME . " " . $user->LASTNAME }}</h4>
                         <h6 class="text-muted card-subtitle mb-2">Position | Current Job | Degrees</h6>
                         <p class="card-text">Ability to add/edit bios and avatar images coming soon!</p><a class="card-link" href="#">Edit</a><a class="card-link" href="#">Change
                             Photo</a><a class="card-link" href="#">Change Background</a>
@@ -84,7 +84,7 @@ My Profile
                         <h6 class="text-muted card-subtitle mb-2"></h6>
                         <p class="card-text"></p>
                     </div>
-                    <a href="#" class="btn btn-info">Edit</a>
+                    <a href="/users/{{ $user->ID }}/profile/edit" class="btn btn-info">Edit</a>
                 </div>
             </div>
         </div>
