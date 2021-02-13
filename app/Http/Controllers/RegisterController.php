@@ -49,9 +49,7 @@ class RegisterController extends Controller
         //check if registration passed
         if ($response->getSuccess()) {
             //return if passed
-            return view('userEdit', array(
-                'email' => $registerRequest->getEmail()
-            ));
+            return redirect()->action([UserProfileController::class, 'loadNewEdit']);
         } else {
             //return if failed
             //TODO -- still working on fail page
